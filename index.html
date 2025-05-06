@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Portfolio - Samiran Pal</title>
+    <link rel="icon" href="web-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/39e5fa2ffc.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div id="header">
+      <div class="container">
+        <nav>
+          <img src="sg1.png" class="logo" />
+          <ul>
+            <li><a href="#header">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-text">
+          <p id="typing-text"></p> <!-- Added the typing animation -->
+          <h1><span id="animated-text">Sayan Ghosh</span></h1>
+          <p>
+            a passionate developer with a strong interest . I'm always excited to explore new technologies, collaborate with creative minds, and turn innovative ideas into reality.
+            Let's connect and create something amazing together  !!
+          </p>
+      </div>              
+      </div>
+    </div>
+
+    <!-- -----------about------------ -->
+
+    <div id="about">
+      <div class="container">
+        <div class="row">
+          <div class="about-col-2">
+            <h1 class="subtitle">About Me</h1>
+            <p>
+              Hello! I'm Sayan, a passionate and versatile developer from India, specialized in Machine Learning and Frontend Development, blending creativity with technical expertise to build intelligent, user-friendly solutions.Beyond coding, I'm a video editor loves crafting engaging visual stories, and a blogger on Medium, where I share insights, tutorials, and experiences from my journey in tech.With a keen eye and a constant drive to learn, I strive to create impactful digital experiences — whether it's developing dynamic websites, building smart models, editing compelling videos, or writing content that inspires.
+
+I'm always excited to explore new technologies, collaborate with creative minds, and turn innovative ideas into reality. Let's connect and create something amazing together!
+
+             <p> <br> Apart from coding, I enjoy participating in hackathons and collaborating with other tech enthusiasts. I am always eager to learn new things and look forward to expanding my knowledge in both front-end and back-end development
+            </p>
+            <div class="tab-titles">
+              <p
+                class="tab-links active-links"
+                onclick="opentab(event, 'skills')"
+              >
+                Skills
+              </p>
+              <p class="tab-links" onclick="opentab(event, 'experience')">
+                Experience
+              </p>
+              <p class="tab-links" onclick="opentab(event, 'education')">
+                Education
+              </p>
+            </div>
+            <div class="tab-contents active-tab" id="skills">
+              <ul>
+                <li><span>DSA</span><br />Problem Solving in C++</li>
+                <li><span>Web Development</span><br />Web App Development</li>
+                <li>
+                  <span>TechStack Known</span><br />C, C++, HTML, CSS, JavaScript, React Js
+                </li>
+              </ul>
+            </div>
+            <div class="tab-contents" id="experience">
+              <ul>
+                <li><span>UI/UX</span><br />Experience with Web/App interfaces</li>
+                <li><span>Web Development</span><br />Web App Development</li>
+                <li><span>App Development</span><br />Building Android/iOS Apps</li>
+                <li><span>ML Development</span><br />Building ML Models</li> 
+              </ul>
+            </div>
+            <div class="tab-contents" id="education">
+              <ul>
+                <li><span>10th</span><br />Got 91% from WBBSE(2021)</li>
+                <li><span>12th</span><br />Got 72% from WBCHSE(2023)</li>
+                <li>
+                  <span>Bachelors</span><br />Currently pursuing B.Tech in CSE from JIS College of Engineering.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="about-col-1">
+            <img src="dp_sayan.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ----------------------services------------------------- -->
+
+    <div id="services">
+      <div class="container">
+        <h1 class="sub-title">My Services</h1>
+        <div class="services-list">
+          <div>
+            <i class="fa-solid fa-code"></i>
+            <h2>ML Development</h2>
+            <p>
+              I build end-to-end Machine Learning pipelines, including data preprocessing, feature engineering, model training, and real-time deployment, using frameworks like TensorFlow, Scikit-learn, and PyTorch.
+              I focus on creating scalable, efficient models that not only perform well but also seamlessly integrate into production environments.
+            </p>
+            <a href="#">Learn More...</a>
+          </div>
+          <div>
+            <i class="fa-solid fa-crop"></i>
+            <h2>Web Design</h2>
+            <p>
+              I create responsive and user-friendly websites that focus on clean design and smooth functionality. Using HTML, CSS, and JavaScript, I bring ideas to life by building custom websites tailored to your needs. Whether it's a simple landing page or a more complex multi-page site, I ensure that your web presence stands out and provides a great user experience. I am also continuously learning new technologies to keep up with modern web development trends and deliver high-quality solutions.
+            </p>
+            <a href="#">Learn More...</a>
+          </div>
+          <div>
+            <i class="fa-brands fa-app-store"></i>
+            <h2>App Development</h2>
+            <p>
+              I develop functional and efficient applications tailored to meet specific user needs. Using modern development practices, I build apps that are both reliable and scalable, ensuring smooth performance across devices. From initial concept to deployment, I work to create apps that solve real-world problems while maintaining a great user experience.
+            </p>
+            <a href="#">Learn More...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ----------------------portfolio------------------------- -->
+    <div id="portfolio">
+      <div class="container">
+        <h1 class="sub-title">My Work</h1>
+        <div class="work-list">
+          <div class="work">
+            <img src="breast_cancer.png" alt="Breast Cancer Predictor Image" />
+            <div class="layer">
+              <h3>AI Powered Breast Cancer Predictor</h3>
+              <p>
+                Harnessing the power of AI to predict breast cancer with high accuracy. Our model analyzes critical data to deliver early, reliable diagnostics. Empowering healthcare with faster, smarter, and life-saving predictions.
+              </p>
+              <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+            </div>
+          </div>          
+          <div class="work">
+            <img src="work-2.png" />
+            <div class="layer">
+              <h3>Music App</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Consequuntur provident enim sunt veniam deserunt eveniet dolor.
+                Dolorem repellendus odit nostrum.
+              </p>
+              <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+            </div>
+          </div>
+          <div class="work">
+            <img src="work-3.png" />
+            <div class="layer">
+              <h3>Online Shopping App</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Consequuntur provident enim sunt veniam deserunt eveniet dolor.
+                Dolorem repellendus odit nostrum.
+              </p>
+              <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="btn">See More</a>
+      </div>
+    </div>
+
+    <!-- ------------------contact--------------------- -->
+
+    <div id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="contact-left">
+            <h1 class="sub-title">Contact Me</h1>
+            <p><i class="fa-solid fa-paper-plane"></i> sayanghosh1887@gmail.com </p>
+            <p><i class="fa-solid fa-square-phone"></i> +91 9339740537 </p>
+            <div class="social-icons">
+              <a href="https://www.linkedin.com/in/sayan-ghosh-b7aaa5293/"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="https://www.instagram.com/hey_saaay/"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://github.com/me-sayanghosh"><i class="fa-brands fa-github"></i></a>
+            </div>
+            <a href="My CV_.pdf" download class="btn btn2">Dawnload CV</a>
+          </div>
+          <div class="contact-right">
+            <form>
+              <input type="text" name="name" placeholder="Your Name" required/>
+              <input type="email" name="email" placeholder="Your Email" required/>
+              <textarea name="message" rows="6" placeholder="Your Message"></textarea>
+              <button type="submit" class="btn btn2">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function opentab(event, tabname) {
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        for (var tablink of tablinks) {
+          tablink.classList.remove("active-links");
+        }
+        for (var tabcontent of tabcontents) {
+          tabcontent.classList.remove("active-tab");
+        }
+
+        event.currentTarget.classList.add("active-links");
+        document.getElementById(tabname).classList.add("active-tab");
+      }
+    </script>
+  </body>
+</html>
+
+<script>
+  const roles = ["Frontend Web-Developer__ ", "ML Developer__ ","Video Editor__","Python Developer__ ", "Content Creator__ "];
+  const typingTextElement = document.getElementById("typing-text");
+
+  async function typeWriter(text, speed = 100) {
+    for (let i = 0; i <= text.length; i++) {
+      typingTextElement.textContent = text.substring(0, i);
+      await new Promise(resolve => setTimeout(resolve, speed));
+    }
+  }
+
+  async function deleteWriter(text, speed = 60) {
+    for (let i = text.length; i >= 0; i--) {
+      typingTextElement.textContent = text.substring(0, i);
+      await new Promise(resolve => setTimeout(resolve, speed));
+    }
+  }
+
+  async function loopRoles() {
+    let i = 0;
+    while (true) {
+      const currentRole = roles[i];
+      await typeWriter(currentRole);
+      await new Promise(resolve => setTimeout(resolve, 1500)); // wait after typing
+      await deleteWriter(currentRole);
+      await new Promise(resolve => setTimeout(resolve, 400)); // short pause before next
+      i = (i + 1) % roles.length;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loopRoles);
+</script>
+
+
+
+
+
+<script>
+  const animatedText = document.getElementById("animated-text");
+  const text = animatedText.textContent;
+  animatedText.textContent = ""; // Clear the text
+
+  let index = 0;
+  function animateText() {
+    if (index < text.length) {
+      animatedText.textContent += text.charAt(index);
+      index++;
+      setTimeout(animateText, 100); // Adjust speed here
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", animateText);
