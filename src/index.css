@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #050200; /* Fallback */
+  --bg-gradient: radial-gradient(circle at 50% 0%, #361705 0%, #150800 17%, #050200 30%);
+  --bg-surface: rgba(255, 255, 255, 0.03); 
+  --text-primary: #ffffff;
+  --text-secondary: #d1c8c3;
+  --accent-color: #ffffff;
+  --accent-hover: #e5e5e5;
+  --border-color: rgba(255, 255, 255, 0.08);
+  
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.05);
+  --glass-blur: blur(12px);
+  
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  background: var(--bg-color); /* Fallback */
+  background-image: var(--bg-gradient);
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 200% 200%;
+  animation: slideRightToLeft 25s ease-in-out infinite alternate;
+  color: var(--text-primary);
+  line-height: 1.5;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+@keyframes slideRightToLeft {
+  0% { background-position: 0% 0%; }   /* Positioned at Top Right */
+  100% { background-position: 100% 0%; } /* Positioned at Top Left */
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--text-secondary);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 0.2s ease;
+}
+
+/* App container to constrain width */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 0 1.5rem;
+  }
+}
+
+/* Global utility classes */
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+  background-color: var(--glass-bg);
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: var(--text-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.section-padding {
+  padding: 6rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 3.5rem 0;
+  }
+}
+
+/* Glassy hover effect items */
+.glassy-item {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.glassy-item::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background: radial-gradient(
+    150px circle at var(--mouse-x, 30%) var(--mouse-y, 30%), 
+    rgba(255, 255, 255, 0.314), 
+    transparent 60%
+  );
+  opacity: 10;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -19; 
+}
+
+.glassy-item > * {
+  position: relative;
+  z-index: 3; /* Make sure text appears above the spotlight glow */
+}
+
+.glassy-item:hover::before {
+  opacity: 1;
+}
+
+/* Animated Icons */
+@keyframes animFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes animPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes animWiggle {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes animBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes animSpin {
+  100% { transform: rotate(360deg); }
+}
+
+.anim-float { animation: animFloat 3s ease-in-out infinite; display: inline-block; }
+.anim-pulse { animation: animPulse 2s ease-in-out infinite; display: inline-block; }
+.anim-wiggle { animation: animWiggle 2s ease-in-out infinite; display: inline-block; }
+.anim-bounce { animation: animBounce 1.5s ease-in-out infinite; display: inline-block; }
+.anim-spin-slow { animation: animSpin 8s linear infinite; display: inline-block; }
