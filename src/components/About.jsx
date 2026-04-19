@@ -92,7 +92,7 @@ const About = () => {
               onMouseMove={handleMouseMove}
             >
               <a 
-                href="https://drive.google.com/file/d/1am1Ok8fvAH38THMaMFb5WNs51s1PaC8-/view?usp=sharing" 
+                href="https://drive.google.com/file/d/1xQIcP1JuEzCMdb5vsALKGtxwy1aF0-In/view?usp=sharing" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-primary glassy-item"

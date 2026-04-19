@@ -5,6 +5,7 @@ import styles from './Projects.module.css';
 import PrepDostImg from '../assets/PrepDost.png';
 import VerifAiImg from '../assets/VerifAi.png';
 import ApnaChatImg from '../assets/ApnaChat.png';
+import CodeReviewer from '../assets/CodeReviewer.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,12 @@ const Projects = () => {
       description: 'A full-stack platform built with React.js and Node.js for PrepDost, enabling interactive mock interviews, secure authentication, and performance insights to enhance career preparation and boost interview confidence.',
       image: PrepDostImg
     },
+    {
+      title: 'CodeReviewer',
+      description: 'Built RESTful architecture to route code submissions through an AI review engine',
+      image: CodeReviewer
+    },
+    
     {
       title: 'VerifAi',
       description: 'A beautiful and accurate weather application providing real-time forecasts, radar maps, and severe weather alerts.',
