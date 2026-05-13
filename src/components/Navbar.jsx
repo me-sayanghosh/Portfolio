@@ -24,6 +24,7 @@ const Navbar = () => {
           <li><a href="#projects" onClick={() => setIsOpen(false)}>Projects</a></li>
           <li><a href="#about" onClick={() => setIsOpen(false)}>About</a></li>
           <li><a href="#achievements" onClick={() => setIsOpen(false)}>Achievements</a></li>
+          <li><a href="#contact" onClick={() => setIsOpen(false)}>Contact</a></li>
         </ul>
       </div>
     </nav>
