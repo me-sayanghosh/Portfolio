@@ -34,12 +34,13 @@
   transform: translateY(-6px) scale(1.02);
   background-color: rgba(255, 255, 255, 0.079);
   border-color: rgba(255, 255, 255, 0.363);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .item.active {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.116);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 
@@ -67,38 +68,85 @@
 }
 
 .learnMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  color: var(--text-primary);
   font-size: 0.85rem;
-  color: var(--text-secondary);
+  font-weight: 500;
   text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
 }
 
 .learnMore:hover {
-  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
 }
 
 .preview {
   position: relative;
   width: 100%;
   aspect-ratio: 16/10;
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+.preview:hover::before {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+  filter: blur(50px);
 }
 
 .imageWrapper {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
   background-color: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: var(--glass-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: rotateY(-6deg) rotateX(2deg) scale(0.95);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.6s ease;
+}
+
+.preview:hover .imageWrapper {
+  transform: rotateY(0deg) rotateX(0deg) scale(1);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 50px rgba(255, 255, 255, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.25);
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.preview:hover .image {
+  transform: scale(1.05);
 }
 
 @keyframes slideDown {

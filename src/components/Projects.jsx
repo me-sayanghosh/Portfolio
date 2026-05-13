@@ -96,7 +96,7 @@ const Projects = () => {
             {projects.map((project, index) => (
               <div 
                 key={index} 
-                className={`${styles.item} anim-project-item ${activeProject === index ? styles.active : ''}`}
+                className={`glassy-item ${styles.item} anim-project-item ${activeProject === index ? styles.active : ''}`}
                 onClick={() => setActiveProject(index)}
               >
                 <h3 className={styles.itemTitle}>{project.title}</h3>
@@ -112,7 +112,7 @@ const Projects = () => {
         </div>
         
         <div className={`${styles.preview} anim-project-preview`}>
-          <div className={styles.imageWrapper}>
+          <div className={`glassy-item ${styles.imageWrapper}`}>
             <img 
               src={projects[activeProject].image} 
               alt={projects[activeProject].title} 
