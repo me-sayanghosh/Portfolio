@@ -6,7 +6,6 @@ import Services from './components/Services';
 import Designs from './components/Designs';
 import About from './components/About';
 import Achievements from './components/Achievements';
-import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
 function App() {
@@ -35,7 +34,6 @@ function App() {
       
         <About />
         <Achievements />
-        <FAQ />
       </main>
       <Footer />
     </div>
