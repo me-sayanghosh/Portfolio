@@ -49,11 +49,7 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className={`${styles.brandBadge} anim-hero`}>
-        <Sparkles size={12} className="anim-pulse" style={{ color: '#f15a24' }} />
-        <span>DESIGNING DIGITAL EXCELLENCE</span>
-      </div>
-      
+
       <h1 className={`${styles.title} anim-hero`}>
         I am <span className={styles.nameHighlight} onMouseMove={handleMouseMove} data-tooltip="Available Now">Sayan Ghosh</span>
       </h1>
