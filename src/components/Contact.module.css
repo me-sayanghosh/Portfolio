@@ -87,12 +87,14 @@
   justify-content: space-between;
   position: relative;
   z-index: 2;
+  gap: 1rem;
 }
 
 .consoleDots {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .consoleDot {
@@ -115,6 +117,11 @@
   color: var(--text-secondary);
   opacity: 0.7;
   letter-spacing: 0.05em;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 1;
 }
 
 .consoleStatus {
@@ -126,6 +133,7 @@
   font-weight: 600;
   color: #2ed573;
   letter-spacing: 0.05em;
+  flex-shrink: 0;
 }
 
 .statusBlink {
@@ -313,5 +321,15 @@
   .formGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  .consoleHeader {
+    padding: 0.8rem 1rem;
+    gap: 0.5rem;
+  }
+  .consoleTitle {
+    font-size: 0.65rem;
+  }
+  .consoleStatus {
+    font-size: 0.65rem;
   }
 }

@@ -350,17 +350,6 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* Technical metrics cards */}
-            <div className={`${styles.metricsGrid} gsap-fade-in`}>
-              {currentProject.metrics.map((metric) => (
-                <div key={metric.label} className={styles.metricCard}>
-                  <span className={styles.metricVal} style={{ textShadow: `0 0 10px ${currentProject.glow}` }}>
-                    {metric.value}
-                  </span>
-                  <span className={styles.metricLabel}>{metric.label}</span>
-                </div>
-              ))}
-            </div>
 
             {/* CTA action buttons */}
             <div className={`${styles.buttonGroup} gsap-fade-in`}>
