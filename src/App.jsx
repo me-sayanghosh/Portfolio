@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Projects from './components/Projects';
-import Services from './components/Services';
 import About from './components/About';
+import Services from './components/Services';
+import Projects from './components/Projects';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -29,9 +29,9 @@ function App() {
       <Navbar />
       <main className="app-container">
         <Hero />
-        <Projects />
-        <Services />
         <About />
+        <Services />
+        <Projects />
         <Achievements />
         <Contact />
       </main>

@@ -12,10 +12,10 @@ const Footer = () => {
             Full-Stack Software Engineer & Creative UI Programmer. Developing high-performance, beautiful digital systems.
           </p>
           <div className={styles.socials}>
-            <a href="https://www.facebook.com/sayan.ghosh.210964" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}><Facebook size={16} className="anim-pulse" /></a>
-            <a href="https://github.com/me-sayanghosh" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}><Github size={16} className="anim-wiggle" /></a>
-            <a href="https://www.linkedin.com/in/sayan-ghosh-b7aaa5293/?skipRedirect=true" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}><Linkedin size={16} className="anim-bounce" /></a>
-            <a href="https://x.com/SayanDev01" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}><Twitter size={16} className="anim-float" /></a>
+            <a href="https://www.facebook.com/sayan.ghosh.210964" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} anim-sway`}><Facebook size={16} /></a>
+            <a href="https://github.com/me-sayanghosh" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} anim-sway`}><Github size={16} /></a>
+            <a href="https://www.linkedin.com/in/sayan-ghosh-b7aaa5293/?skipRedirect=true" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} anim-sway`}><Linkedin size={16} /></a>
+            <a href="https://x.com/SayanDev01" target="_blank" rel="noopener noreferrer" className={`${styles.socialIcon} anim-sway`}><Twitter size={16} /></a>
           </div>
         </div>
         

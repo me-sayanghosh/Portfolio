@@ -73,22 +73,27 @@
 .navLink {
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 1.3rem;
+  width: 44px;
+  height: 44px;
   color: var(--text-secondary);
-  font-size: 0.85rem;
-  font-weight: 500;
-  border-radius: 100px;
+  border-radius: 50%;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
-  overflow: hidden;
+}
+
+.navLink svg {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
 }
 
 .navLink:hover {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.navLink:hover svg {
+  transform: scale(1.15);
 }
 
 .navLinkActive {
@@ -117,6 +122,63 @@
   transform: translateY(0);
 }
 
+/* Glassy Luxury Tooltip pseudo-elements */
+.navLink[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px) scale(0.9);
+  background: rgba(10, 8, 7, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55), 
+              0 0 0 1px rgba(255, 255, 255, 0.03),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1100;
+}
+
+.navLink[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  border-width: 5px 5px 0;
+  border-style: solid;
+  border-color: rgba(10, 8, 7, 0.92) transparent transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1100;
+}
+
+.navLink[data-tooltip]:hover::after,
+.navLink[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.navLink[data-tooltip]:hover::after {
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.navLink[data-tooltip]:hover::before {
+  transform: translateX(-50%) translateY(0);
+}
+
 /* Responsive configurations */
 @media (max-width: 768px) {
   .topHeader {
@@ -128,13 +190,13 @@
   }
   
   .capsuleNav {
-    gap: 0.15rem;
-    padding: 0.4rem;
+    gap: 0.25rem;
+    padding: 0.35rem;
   }
   
   .navLink {
-    padding: 0.55rem 0.9rem;
-    font-size: 0.8rem;
+    width: 38px;
+    height: 38px;
   }
   
   .activeDot {
@@ -143,8 +205,13 @@
 }
 
 @media (max-width: 400px) {
+  .capsuleNav {
+    gap: 0.15rem;
+    padding: 0.3rem;
+  }
+  
   .navLink {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
+    width: 34px;
+    height: 34px;
   }
 }

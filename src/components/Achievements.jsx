@@ -65,7 +65,7 @@ const AchievementCard = ({ item, index }) => {
         
         <div className={styles.content}>
           <div className={styles.titleWrapper}>
-            <div className={styles.iconBox}>
+            <div className={`${styles.iconBox} ${item.animationClass}`}>
               {item.icon}
             </div>
             <h3 className={styles.cardTitle}>{item.title}</h3>
@@ -87,6 +87,7 @@ const Achievements = () => {
       description: "Secured 2nd place in the prestigious JISTECH 2025 technical hackfest for developing an innovative platform resolving real-world societal friction.",
       image: MSCSCImg,
       icon: <Trophy size={18} />,
+      animationClass: "anim-bounce",
       accent: '#ffd700', // Gold glow
       glow: 'rgba(255, 215, 0, 0.18)'
     },
@@ -96,6 +97,7 @@ const Achievements = () => {
       description: "Selected as a Top 5 national finalist out of 60 competing engineering teams at the GeeksforGeeks Kolkata Hackfest 2k26.",
       image: Hackfest,
       icon: <Star size={18} />,
+      animationClass: "anim-wiggle",
       accent: '#f15a24', // Orange/Fiery glow
       glow: 'rgba(241, 90, 36, 0.18)'
     },
@@ -105,6 +107,7 @@ const Achievements = () => {
       description: "Acknowledged for significant pull requests, core layout additions, and plug-in optimizations across major open-source frameworks at NexFellow.",
       image: OpenSource,
       icon: <Award size={18} />,
+      animationClass: "anim-float",
       accent: '#8a2be2', // Violet glow
       glow: 'rgba(138, 43, 226, 0.18)'
     },
@@ -114,6 +117,7 @@ const Achievements = () => {
       description: "Awarded community choice award for creating and publishing an extremely fluid, accessible, and high-fidelity glassmorphism interface system.",
       image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
       icon: <Medal size={18} />,
+      animationClass: "anim-circle",
       accent: '#00f2fe', // Sky Blue/Cyan glow
       glow: 'rgba(0, 242, 254, 0.18)'
     }

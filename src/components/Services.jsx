@@ -127,8 +127,8 @@ const Services = () => {
             style={{ '--service-accent': service.accent, '--service-glow': service.glow }}
           >
             <div className={styles.cardHeader}>
-              <div className={styles.iconBox}>
-                {service.icon}
+              <div className={`${styles.iconBox} ${service.icon.props.className}`}>
+                {React.cloneElement(service.icon, { className: '' })}
               </div>
               <div className={styles.headerInfo}>
                 <span className={styles.cardTag}>{service.tag}</span>

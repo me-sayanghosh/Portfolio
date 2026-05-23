@@ -74,9 +74,9 @@ const About = () => {
   };
 
   const specs = [
-    { icon: <Briefcase size={14} />, label: 'Role', value: 'Full-Stack Dev' },
-    { icon: <Calendar size={14} />, label: 'Experience', value: '3+ Years' },
-    { icon: <MapPin size={14} />, label: 'Location', value: 'Kalyani, India' }
+    { icon: <Briefcase size={14} />, label: 'Role', value: 'Full-Stack Dev', animationClass: 'anim-float' },
+    { icon: <Calendar size={14} />, label: 'Experience', value: '3+ Years', animationClass: 'anim-pulse' },
+    { icon: <MapPin size={14} />, label: 'Location', value: 'Kalyani, India', animationClass: 'anim-bounce' }
   ];
 
   return (
@@ -116,7 +116,7 @@ const About = () => {
             {specs.map((spec) => (
               <div key={spec.label} className={styles.specCard}>
                 <div className={styles.specHeader}>
-                  <span className={styles.specIcon}>{spec.icon}</span>
+                  <span className={`${styles.specIcon} ${spec.animationClass}`}>{spec.icon}</span>
                   <span className={styles.specLabel}>{spec.label}</span>
                 </div>
                 <span className={styles.specVal}>{spec.value}</span>

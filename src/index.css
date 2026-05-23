@@ -178,8 +178,33 @@ button {
   100% { transform: rotate(360deg); }
 }
 
-.anim-float { animation: animFloat 3s ease-in-out infinite; display: inline-block; }
-.anim-pulse { animation: animPulse 2s ease-in-out infinite; display: inline-block; }
-.anim-wiggle { animation: animWiggle 2s ease-in-out infinite; display: inline-block; }
-.anim-bounce { animation: animBounce 1.5s ease-in-out infinite; display: inline-block; }
-.anim-spin-slow { animation: animSpin 8s linear infinite; display: inline-block; }
+.anim-float { animation: animFloat 3s ease-in-out infinite; display: inline-flex; }
+.anim-pulse { animation: animPulse 2s ease-in-out infinite; display: inline-flex; }
+.anim-wiggle { animation: animWiggle 2s ease-in-out infinite; display: inline-flex; }
+.anim-bounce { animation: animBounce 1.5s ease-in-out infinite; display: inline-flex; }
+.anim-spin-slow { animation: animSpin 8s linear infinite; display: inline-flex; }
+
+@keyframes animCircle {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(2px, -2px); }
+  50% { transform: translate(0, -4px); }
+  75% { transform: translate(-2px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+.anim-circle {
+  animation: animCircle 4s ease-in-out infinite;
+  display: inline-flex;
+}
+
+@keyframes animSway {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  25% { transform: translateY(-3px) rotate(-4deg) scale(1.03); }
+  50% { transform: translateY(-6px) rotate(0deg) scale(1.06); }
+  75% { transform: translateY(-3px) rotate(4deg) scale(1.03); }
+}
+
+.anim-sway {
+  animation: animSway 4.5s ease-in-out infinite;
+  display: inline-flex;
+}
