@@ -2,70 +2,233 @@
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pretitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #f15a24;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  text-shadow: 0 0 12px rgba(241, 90, 36, 0.3);
+}
+
+.heading {
+  font-size: 2.8rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #ffffff 0%, #d1c8c3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 6rem;
-  align-items: center;
+  grid-template-columns: 350px 1.4fr;
+  gap: 5rem;
+  align-items: start;
 }
 
 .imageCol {
-  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
 }
 
-.imageWrapper {
+.tiltWrapper {
+  perspective: 1200px;
   position: relative;
   width: 100%;
-  max-width: 350px;
+}
+
+.tiltWrapper::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: #f15a24;
+  filter: blur(60px);
+  opacity: 0.2;
+  z-index: 0;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.portraitCard3d {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   aspect-ratio: 3/4;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.portraitCard3d:hover {
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.imageOverlayContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 8px;
-  position: relative;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portraitCard3d:hover .image {
+  transform: scale(1.04);
+}
+
+.cardGlare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
   z-index: 2;
 }
 
-.imageBorder {
+.portraitBanner {
   position: absolute;
-  top: 20px;
-  right: -20px;
-  bottom: -20px;
-  left: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 8px;
-  z-index: 1;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 3;
 }
 
-.heading {
-  font-size: 1.5rem;
+/* Specs Telemetry Grid */
+.specsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.specCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.specCard:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.specHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.specIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f15a24;
+  opacity: 0.85;
+}
+
+.specLabel {
+  font-size: 0.8rem;
   font-weight: 500;
-  line-height: 1.4;
-  margin-bottom: 2rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.specVal {
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--text-primary);
+}
+
+/* Right Content Column */
+.contentCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.aboutHeader {
+  font-size: 1.6rem;
+  font-weight: 450;
+  line-height: 1.4;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 .paragraphs {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  gap: 1.4rem;
 }
 
 .paragraphs p {
   color: var(--text-secondary);
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.7;
+  opacity: 0.8;
 }
 
+/* Actions Resume & Hire button */
 .actions {
   display: flex;
-  gap: 1rem;
+  gap: 1.2rem;
+  margin-top: 1rem;
 }
 
 .tooltipWrapper {
@@ -79,13 +242,12 @@
   top: var(--y, 0px);
   left: var(--x, 50%);
   transform: translateX(-50%) translateY(calc(-100% - 12px)) scale(0.8);
-  background: rgba(27, 18, 9, 0.95);
+  background: rgba(5, 2, 0, 0.95);
   color: #ffffff;
   padding: 0.35rem 0.75rem;
   border-radius: 6px;
   font-size: 10px;
   font-weight: 500;
-  letter-spacing: normal;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
@@ -96,58 +258,92 @@
   z-index: 100;
 }
 
-.tooltipWrapper::before {
-  content: "";
-  position: absolute;
-  top: var(--y, 0px);
-  left: var(--x, 50%);
-  transform: translateX(-50%) translateY(calc(-100% - 2px)) scale(0.8);
-  border-width: 5px;
-  border-style: solid;
-  border-color: rgba(27, 18, 9, 0.95) transparent transparent transparent;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
-  pointer-events: none;
-  z-index: 101;
-}
-
 .tooltipWrapper:hover::after {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(calc(-100% - 12px)) scale(1);
 }
 
-.tooltipWrapper:hover::before {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(calc(-100% - 2px)) scale(1);
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  background: #f15a24;
+  color: #050200;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(241, 90, 36, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+  box-shadow: 0 6px 25px rgba(241, 90, 36, 0.35);
+  color: #050200;
+}
+
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.btnSecondary:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  color: var(--text-primary);
+}
+
+/* Responsive constraints */
 @media (max-width: 968px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 3.5rem;
+  }
+  .imageCol {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  .specsGrid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .imageWrapper {
-    max-width: 240px;
+  .aboutHeader {
+    font-size: 1.4rem;
   }
-  
-  .imageBorder {
-    top: 15px;
-    right: -15px;
-    bottom: -15px;
-    left: 15px;
+  .heading {
+    font-size: 2.2rem;
   }
-  
+  .specsGrid {
+    grid-template-columns: 1fr;
+  }
   .actions {
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
   }
-  
-  .aboutSection {
-    text-align: center;
+  .btnPrimary, .btnSecondary {
+    width: 100%;
+  }
+  .tooltipWrapper {
+    width: 100%;
   }
 }

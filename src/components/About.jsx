@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Sparkles, Calendar, MapPin, Briefcase, FileText, ArrowRight } from 'lucide-react';
 import styles from './About.module.css';
 import SayanImg from '../pictures/Sayan.png';
 
@@ -8,27 +9,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const container = useRef();
+  const cardRef = useRef();
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // Image slide in from left
-      gsap.fromTo('.anim-about-img', {
-        x: -50,
-        opacity: 0
-      }, {
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 75%',
-        },
-        x: 0,
-        opacity: 1,
-        duration: 1,
-        ease: 'power3.out'
-      });
-
       // Content slide in staggered
-      gsap.fromTo('.anim-about-text', {
-        y: 40,
+      gsap.fromTo('.anim-about-in', {
+        y: 35,
         opacity: 0
       }, {
         scrollTrigger: {
@@ -38,7 +25,7 @@ const About = () => {
         y: 0,
         opacity: 1,
         duration: 1,
-        stagger: 0.15,
+        stagger: 0.08,
         ease: 'power3.out'
       });
     }, container);
@@ -46,7 +33,39 @@ const About = () => {
     return () => ctx.revert();
   }, []);
 
+  // 3D Portrait Cursor-Tracking Transform Handler
   const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const xc = rect.width / 2;
+    const yc = rect.height / 2;
+    const dx = (x - xc) / xc;
+    const dy = (y - yc) / yc;
+
+    const rotateX = -dy * 10;
+    const rotateY = dx * 10;
+
+    card.style.setProperty('--rx', `${rotateX}deg`);
+    card.style.setProperty('--ry', `${rotateY}deg`);
+
+    card.style.setProperty('--glare-x', `${(x / rect.width) * 100}%`);
+    card.style.setProperty('--glare-y', `${(y / rect.height) * 100}%`);
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+    card.style.setProperty('--rx', '0deg');
+    card.style.setProperty('--ry', '0deg');
+    card.style.setProperty('--glare-x', '50%');
+    card.style.setProperty('--glare-y', '50%');
+  };
+
+  const handleTooltipMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -54,54 +73,97 @@ const About = () => {
     e.currentTarget.style.setProperty('--y', `${y}px`);
   };
 
+  const specs = [
+    { icon: <Briefcase size={14} />, label: 'Role', value: 'Full-Stack Dev' },
+    { icon: <Calendar size={14} />, label: 'Experience', value: '3+ Years' },
+    { icon: <MapPin size={14} />, label: 'Location', value: 'Kalyani, India' }
+  ];
+
   return (
     <section id="about" className={`section-padding ${styles.aboutSection}`} ref={container}>
+      <div className={styles.sectionHeader}>
+        <span className={`${styles.pretitle} anim-about-in`}>BIOGRAPHY</span>
+        <h2 className={`${styles.heading} anim-about-in`}>About Me</h2>
+      </div>
+
       <div className={styles.grid}>
-        <div className={`${styles.imageCol} anim-about-img`}>
-          <div className={styles.imageWrapper}>
-            <img 
-              src={SayanImg} 
-              alt="Sayan Ghosh" 
-              className={styles.image}
-            />
-            <div className={styles.imageBorder}></div>
+        {/* Asymmetric Left column: 3D Portrait & Stats Grid */}
+        <div className={`${styles.imageCol} anim-about-in`}>
+          <div className={styles.tiltWrapper}>
+            <div 
+              className={styles.portraitCard3d}
+              ref={cardRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={styles.imageOverlayContainer}>
+                <img 
+                  src={SayanImg} 
+                  alt="Sayan Ghosh" 
+                  className={styles.image}
+                />
+                <div className={styles.cardGlare} />
+                <div className={styles.portraitBanner}>
+                  <Sparkles size={14} className="anim-pulse" style={{ color: '#f15a24' }} />
+                  <span>Full-Stack Web Programmer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Specs Grid right below portrait */}
+          <div className={styles.specsGrid}>
+            {specs.map((spec) => (
+              <div key={spec.label} className={styles.specCard}>
+                <div className={styles.specHeader}>
+                  <span className={styles.specIcon}>{spec.icon}</span>
+                  <span className={styles.specLabel}>{spec.label}</span>
+                </div>
+                <span className={styles.specVal}>{spec.value}</span>
+              </div>
+            ))}
           </div>
         </div>
         
+        {/* Right column: Description, dynamic content blocks, actions */}
         <div className={styles.contentCol}>
-          <h2 className={`${styles.heading} anim-about-text`}>
-            I am Sayan, a full stack web developer and a programmer working remotely in my home at Kalyani, India
-          </h2>
+          <h3 className={`${styles.aboutHeader} anim-about-in`}>
+            Crafting scalable, premium digital systems that blend visual artistry with backend engineering.
+          </h3>
           
-          <div className={`${styles.paragraphs} anim-about-text`}>
+          <div className={`${styles.paragraphs} anim-about-in`}>
             <p>
-              I've spent the last 3+ years learning and working across different areas of development: front-end development, back-end development, UI/UX design and currently working for Monipur School and College Science Club as a Web developer
+              I am Sayan, a dedicated full-stack web developer and programmer working remotely from my workspace in Kalyani, India. Over the past 3+ years, I have explored and masterfully engineered web apps spanning multiple stacks: building high-performance interfaces, developing secure API gateways, and implementing clean database schemas.
             </p>
             <p>
-              These days my time is spent researching, designing, building websites, and coding. I also love to learn and experiment with new things.
+              Currently, I design and manage web systems for the **Monipur School and College Science Club** as a Web Developer, ensuring modern UI delivery and robust application performance. Most of my daily routines revolve around researching performance bottlenecks, structuring reusable components, and playing with modern animations.
             </p>
             <p>
-              My mission is to help small and medium-sized businesses grow their audience and brand recognition by providing them a stylish and modern-looking, fully functional website
+              My core mission is to help growing enterprises establish a majestic digital presence. By prioritizing accessibility, clean architectures, and custom glassmorphism styles, I build web ecosystems that captivate and convert.
             </p>
           </div>
           
-          <div className={`${styles.actions} anim-about-text`}>
+          <div className={`${styles.actions} anim-about-in`}>
             <div 
               className={styles.tooltipWrapper} 
-              data-tooltip="click me"
-              onMouseMove={handleMouseMove}
+              data-tooltip="View Drive Document"
+              onMouseMove={handleTooltipMouseMove}
             >
               <a 
                 href="https://drive.google.com/file/d/1EkjbHJDA0z8kC-Ui1KGVEJw_bvqZm3oo/view?usp=sharing" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="btn-primary glassy-item"
-                style={{ textDecoration: 'none', display: 'inline-block' }}
+                className={styles.btnPrimary}
               >
-                My Resume
+                <span>Download Resume</span>
+                <FileText size={16} />
               </a>
             </div>
-            <button className="btn-secondary glassy-item">Hire me</button>
+            
+            <a href="#contact" className={styles.btnSecondary}>
+              <span>Hire me</span>
+              <ArrowRight size={15} />
+            </a>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Loader2, Sparkles, Terminal } from 'lucide-react';
 import styles from './Contact.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,8 +25,8 @@ const Contact = () => {
         },
         y: 0,
         opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
+        duration: 1,
+        stagger: 0.12,
         ease: 'power3.out'
       });
     }, container);
@@ -52,8 +52,7 @@ const Contact = () => {
           setIsSubmitting(false);
           setStatus('success');
           form.current.reset();
-          // Hide success message after 5 seconds
-          setTimeout(() => setStatus(null), 5000);
+          setTimeout(() => setStatus(null), 6000);
         },
         (error) => {
           setIsSubmitting(false);
@@ -63,47 +62,91 @@ const Contact = () => {
       );
   };
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   return (
     <section id="contact" className={`section-padding ${styles.contactSection}`} ref={container}>
       <div className={styles.container}>
-        <h2 className={`${styles.heading} anim-contact`}>Get In Touch</h2>
-        <p className={`${styles.subheading} anim-contact`}>Have a question or want to work together? Drop me a message!</p>
+        <div className={styles.sectionHeader}>
+          <span className={`${styles.pretitle} anim-contact`}>COMMUNICATION PORTAL</span>
+          <h2 className={`${styles.heading} anim-contact`}>Get In Touch</h2>
+          <p className={`${styles.subheading} anim-contact`}>
+            Have a project in mind, a role to fill, or simply want to talk shop? Establish a secure link below.
+          </p>
+        </div>
         
-        <div className={`glassy-item ${styles.formCard} anim-contact`}>
-          <form ref={form} onSubmit={sendEmail}>
-            <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="user_name">Name</label>
-              <input 
-                type="text" 
-                id="user_name"
-                name="user_name" 
-                className={styles.input} 
-                placeholder="John Doe"
-                required 
-              />
+        <div 
+          className={`glassy-item ${styles.formCard} anim-contact`}
+          onMouseMove={handleMouseMove}
+        >
+          {/* Console Header Bar */}
+          <div className={styles.consoleHeader}>
+            <div className={styles.consoleDots}>
+              <span className={`${styles.consoleDot} ${styles.redDot}`} />
+              <span className={`${styles.consoleDot} ${styles.yellowDot}`} />
+              <span className={`${styles.consoleDot} ${styles.greenDot}`} />
+            </div>
+            <div className={styles.consoleTitle}>
+              <Terminal size={12} style={{ color: '#f15a24' }} />
+              <span>SECURE_TRANSMISSION_PROTOCOL.exe</span>
+            </div>
+            <div className={styles.consoleStatus}>
+              <span className={styles.statusBlink} />
+              <span>ONLINE</span>
+            </div>
+          </div>
+
+          <form ref={form} onSubmit={sendEmail} className={styles.formBody}>
+            <div className={styles.formGrid}>
+              <div className={styles.formGroup}>
+                <label className={styles.label} htmlFor="user_name">SENDER_NAME</label>
+                <div className={styles.inputWrapper}>
+                  <input 
+                    type="text" 
+                    id="user_name"
+                    name="user_name" 
+                    className={styles.input} 
+                    placeholder="e.g. John Doe"
+                    required 
+                  />
+                  <div className={styles.inputBorderGlow} />
+                </div>
+              </div>
+              
+              <div className={styles.formGroup}>
+                <label className={styles.label} htmlFor="user_email">SENDER_EMAIL</label>
+                <div className={styles.inputWrapper}>
+                  <input 
+                    type="email" 
+                    id="user_email"
+                    name="user_email" 
+                    className={styles.input} 
+                    placeholder="e.g. john@example.com"
+                    required 
+                  />
+                  <div className={styles.inputBorderGlow} />
+                </div>
+              </div>
             </div>
             
-            <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="user_email">Email</label>
-              <input 
-                type="email" 
-                id="user_email"
-                name="user_email" 
-                className={styles.input} 
-                placeholder="john@example.com"
-                required 
-              />
-            </div>
-            
-            <div className={styles.formGroup}>
-              <label className={styles.label} htmlFor="message">Message</label>
-              <textarea 
-                id="message"
-                name="message" 
-                className={styles.textarea} 
-                placeholder="Hi there! I'd like to talk about..."
-                required 
-              />
+            <div className={styles.formGroup} style={{ marginTop: '0.5rem' }}>
+              <label className={styles.label} htmlFor="message">TRANSMISSION_BODY</label>
+              <div className={styles.inputWrapper}>
+                <textarea 
+                  id="message"
+                  name="message" 
+                  className={styles.textarea} 
+                  placeholder="Type your message details here..."
+                  required 
+                />
+                <div className={styles.inputBorderGlow} />
+              </div>
             </div>
             
             <button 
@@ -113,28 +156,28 @@ const Contact = () => {
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 size={20} className="anim-spin-slow" />
-                  Sending...
+                  <Loader2 size={16} className="anim-spin-slow" />
+                  <span>TRANSMITTING_PACKETS...</span>
                 </>
               ) : (
                 <>
-                  <Send size={20} />
-                  Send Message
+                  <Send size={16} />
+                  <span>SEND TRANSMISSION</span>
                 </>
               )}
             </button>
             
             {status === 'success' && (
               <div className={`${styles.statusMessage} ${styles.success}`}>
-                <CheckCircle size={18} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '8px' }} />
-                Your message has been sent successfully! I'll get back to you soon.
+                <CheckCircle size={18} />
+                <span>CONNECTION STABLE: Packet delivered successfully! I will transmit a response shortly.</span>
               </div>
             )}
             
             {status === 'error' && (
               <div className={`${styles.statusMessage} ${styles.error}`}>
-                <AlertCircle size={18} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '8px' }} />
-                Oops! Something went wrong. Please check your EmailJS configuration.
+                <AlertCircle size={18} />
+                <span>CONNECTION TIMEOUT: Delivery failed. Please review your EmailJS configuration.</span>
               </div>
             )}
           </form>

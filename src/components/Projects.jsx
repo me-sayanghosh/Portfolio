@@ -40,8 +40,8 @@ const Projects = () => {
       ],
       accent: '#2563eb',
       glow: 'rgba(37, 99, 235, 0.22)',
-      liveLink: '#',
-      gitLink: '#'
+      liveLink: 'https://hoopit.vercel.app/',
+      gitLink: 'https://github.com/me-sayanghosh/Hoopit'
     },
     {
       title: 'PrepDost',
@@ -61,8 +61,8 @@ const Projects = () => {
       ],
       accent: '#f15a24',
       glow: 'rgba(241, 90, 36, 0.22)',
-      liveLink: '#',
-      gitLink: '#'
+      liveLink: 'https://prep-dost.vercel.app/',
+      gitLink: 'https://github.com/me-sayanghosh/PrepDost'
     },
     {
       title: 'CodeReviewer',
@@ -82,11 +82,11 @@ const Projects = () => {
       ],
       accent: '#8a2be2',
       glow: 'rgba(138, 43, 226, 0.22)',
-      liveLink: '#',
-      gitLink: '#'
+      liveLink: 'https://code-reviewer-chi-cyan.vercel.app/',
+      gitLink: 'https://github.com/me-sayanghosh/CodeReviewer'
     },
     {
-      title: 'VerifAi',
+      title: 'Veritas AI',
       category: 'UI/UX & Creative',
       tagline: 'Cinematic Weather Radar & Forecasting',
       description: 'A visually striking weather forecasting engine displaying complex meteorological datasets through interactive graphs, live-rendering particle storms, and geographic radar map feeds.',
@@ -103,8 +103,8 @@ const Projects = () => {
       ],
       accent: '#00f2fe',
       glow: 'rgba(0, 242, 254, 0.22)',
-      liveLink: '#',
-      gitLink: '#'
+      liveLink: 'https://veritas-ai-tau.vercel.app/',
+      gitLink: 'https://github.com/me-sayanghosh/veritas-ai'
     }
   ];
 
