@@ -247,11 +247,30 @@ button {
 :root.light-theme [class*="sidebarItem"],
 :root.light-theme [class*="techBadge"],
 :root.light-theme [class*="btnSecondary"],
-:root.light-theme [class*="filterBar"] {
+:root.light-theme [class*="filterBar"],
+:root.light-theme [class*="serviceCard"],
+:root.light-theme [class*="telemetryCard"],
+:root.light-theme [class*="badge"] {
   background: rgba(255, 255, 255, 0.55) !important;
   border-color: rgba(0, 0, 0, 0.06) !important;
   color: var(--text-primary) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+:root.light-theme [class*="serviceCard"]:hover {
+  border-color: var(--service-accent) !important;
+  box-shadow: 0 15px 40px var(--service-glow), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+:root.light-theme [class*="iconBox"] {
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+:root.light-theme [class*="filterBtnActive"] {
+  color: #ffffff !important;
+  background: var(--text-primary) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
 }
 
 :root.light-theme [class*="sidebarItemActive"] {
