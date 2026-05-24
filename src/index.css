@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg-color: #030100; /* Richer space black fallback */
-  --bg-gradient: radial-gradient(circle at 50% 0%, #200e05 0%, #0d0603 20%, #050302 55%, #030100 100%);
+  --bg-color: #030303; /* Deeper pure space black fallback */
+  --bg-gradient: radial-gradient(circle at 50% 0%, #220f06 0%, #0d0603 28%, #030303 75%);
   --bg-surface: rgba(255, 255, 255, 0.04); 
   --text-primary: #ffffff;
   --text-secondary: #dcd4cf; /* Higher contrast off-white */
@@ -465,11 +465,13 @@ html, body, header, nav, main, footer, div, section, a, button, p, h1, h2, h3, h
 
 /* Mobile performance optimization overrides to eliminate scroll lag (jank) */
 @media (max-width: 768px) {
-  /* 1. Disable full-screen continuous sliding background gradient repaints */
+  /* 1. Disable sliding animations, restrict background gradient height, and disable fixed backgrounds to prevent scroll lag */
   html {
     animation: none !important;
-    background-size: 100% 100% !important;
-    background-attachment: scroll !important; /* Fixed backgrounds are extremely laggy on mobile browsers */
+    background-attachment: scroll !important;
+    background-size: 100% 720px !important; /* Limit gradient to the top 720px of mobile screen layout for a warm header glow */
+    background-repeat: no-repeat !important;
+    background-color: var(--bg-color) !important; /* Ensure everything below 720px renders in gorgeous high-contrast obsidian black */
   }
 
   /* 2. Remove heavy desktop blurs but keep a lightweight, optimized backdrop-filter for premium glassmorphism on mobile */
