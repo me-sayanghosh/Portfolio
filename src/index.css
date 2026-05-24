@@ -249,11 +249,29 @@ button {
 :root.light-theme [class*="btnSecondary"],
 :root.light-theme [class*="filterBar"],
 :root.light-theme [class*="serviceCard"],
-:root.light-theme [class*="telemetryCard"] {
-  background: rgba(255, 255, 255, 0.55) !important;
-  border-color: rgba(0, 0, 0, 0.06) !important;
+:root.light-theme [class*="telemetryCard"],
+:root.light-theme [class*="achievementCard3d"],
+:root.light-theme [class*="formCard"] {
+  background: rgba(255, 255, 255, 0.32) !important;
+  border: 1px solid rgba(255, 255, 255, 0.48) !important;
   color: var(--text-primary) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 15px 35px rgba(30, 19, 12, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+}
+
+/* Specific hover elevation for light glassy cards */
+:root.light-theme [class*="glassCard3d"]:hover,
+:root.light-theme [class*="portraitCard3d"]:hover,
+:root.light-theme [class*="sidebarItem"]:hover,
+:root.light-theme [class*="serviceCard"]:hover,
+:root.light-theme [class*="achievementCard3d"]:hover,
+:root.light-theme [class*="formCard"]:hover {
+  background: rgba(255, 255, 255, 0.45) !important;
+  border-color: rgba(255, 255, 255, 0.65) !important;
+  box-shadow: 0 20px 45px rgba(30, 19, 12, 0.08), 
+              0 0 15px rgba(241, 90, 36, 0.05),
+              inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
 }
 
 :root.light-theme [class*="badge"] {
@@ -542,19 +560,23 @@ html, body, header, nav, main, footer, div, section, a, button, p, h1, h2, h3, h
   :root:not(.light-theme) [class*="portraitCard3d"],
   :root:not(.light-theme) [class*="sidebarItem"],
   :root:not(.light-theme) [class*="serviceCard"],
-  :root:not(.light-theme) [class*="achievementCard3d"] {
+  :root:not(.light-theme) [class*="achievementCard3d"],
+  :root:not(.light-theme) [class*="formCard"] {
     background: rgba(12, 8, 6, 0.88) !important;
     border-color: rgba(255, 255, 255, 0.07) !important;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
   }
 
-  /* 4. Make light-mode mobile containers slightly more opaque for high contrast without backdrop filter blur */
+  /* 4. Make light-mode mobile containers beautifully glassy and frosted */
   :root.light-theme [class*="glassCard3d"],
   :root.light-theme [class*="portraitCard3d"],
   :root.light-theme [class*="sidebarItem"],
   :root.light-theme [class*="serviceCard"],
-  :root.light-theme [class*="achievementCard3d"] {
-    background: rgba(255, 255, 255, 0.96) !important;
+  :root.light-theme [class*="achievementCard3d"],
+  :root.light-theme [class*="formCard"] {
+    background: rgba(255, 255, 255, 0.65) !important;
+    border-color: rgba(255, 255, 255, 0.48) !important;
+    box-shadow: 0 10px 25px rgba(30, 19, 12, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   }
 
   /* 5. Disable heavy background blurs and ambient glow circles */
