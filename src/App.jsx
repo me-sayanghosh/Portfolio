@@ -27,6 +27,7 @@ function App() {
   };
 
   useEffect(() => {
+    if (window.innerWidth <= 768) return;
     const handleMouseMove = (e) => {
       const items = document.querySelectorAll('.glassy-item');
       items.forEach((item) => {

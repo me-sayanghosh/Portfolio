@@ -76,13 +76,13 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
+  border: 1px solid transparent;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: none;
   overflow: hidden;
   transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  transition: transform 0.1s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.1s ease-out, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -90,7 +90,8 @@
 
 .achievementCard3d:hover {
   border-color: var(--ach-accent);
-  box-shadow: 0 30px 60px var(--ach-glow), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 60px var(--ach-glow);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .imageOverlayContainer {
@@ -217,4 +218,10 @@
   .subtitle {
     font-size: 1rem;
   }
+}
+
+:global(.light-theme) .achievementCard3d:hover {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: var(--ach-accent) !important;
+  box-shadow: 0 15px 40px var(--ach-glow) !important;
 }

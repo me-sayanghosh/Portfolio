@@ -355,3 +355,48 @@ button {
 html, body, header, nav, main, footer, div, section, a, button, p, h1, h2, h3, h4, h5, h6, span {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
+
+/* Mobile performance optimization overrides to eliminate scroll lag (jank) */
+@media (max-width: 768px) {
+  /* 1. Disable full-screen continuous sliding background gradient repaints */
+  html {
+    animation: none !important;
+    background-size: 100% 100% !important;
+    background-attachment: scroll !important; /* Fixed backgrounds are extremely laggy on mobile browsers */
+  }
+
+  /* 2. Remove backdrop-filter blur rendering pipeline bottlenecks */
+  [class*="capsuleNav"],
+  [class*="glassCard3d"],
+  [class*="portraitCard3d"],
+  [class*="sidebarItem"],
+  [class*="serviceCard"],
+  [class*="achievementCard3d"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* 3. Make dark-mode mobile containers slightly more opaque for high contrast without backdrop filter blur */
+  [class*="glassCard3d"],
+  [class*="portraitCard3d"],
+  [class*="sidebarItem"],
+  [class*="serviceCard"],
+  [class*="achievementCard3d"] {
+    background: rgba(15, 12, 10, 0.95) !important;
+  }
+
+  /* 4. Make light-mode mobile containers slightly more opaque for high contrast without backdrop filter blur */
+  :root.light-theme [class*="glassCard3d"],
+  :root.light-theme [class*="portraitCard3d"],
+  :root.light-theme [class*="sidebarItem"],
+  :root.light-theme [class*="serviceCard"],
+  :root.light-theme [class*="achievementCard3d"] {
+    background: rgba(255, 255, 255, 0.96) !important;
+  }
+
+  /* 5. Disable heavy background blurs and ambient glow circles */
+  [class*="ambientGlow"],
+  [class*="tiltWrapper"]::before {
+    display: none !important;
+  }
+}
