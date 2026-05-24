@@ -15,6 +15,9 @@
   --glass-blur: blur(12px);
   
   --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+
+  --heading-gradient: linear-gradient(180deg, #ffffff 0%, #d1c8c3 100%);
+  --name-gradient: linear-gradient(120deg, #ffffff 0%, #f15a24 100%);
 }
 
 * {
@@ -207,4 +210,111 @@ button {
 .anim-sway {
   animation: animSway 4.5s ease-in-out infinite;
   display: inline-flex;
+}
+
+/* Premium Light Theme overrides and global classes */
+:root.light-theme {
+  --bg-color: #faf7f2;
+  --bg-gradient: linear-gradient(180deg, #ffeadd 0%, #fcf9f5 35%, #faf7f2 100%);
+  --bg-surface: rgba(0, 0, 0, 0.02);
+  --text-primary: #1e130c;
+  --text-secondary: #5c4e46;
+  --accent-color: #f15a24;
+  --accent-hover: #cf4310;
+  --border-color: rgba(0, 0, 0, 0.08);
+  
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: 1px solid rgba(0, 0, 0, 0.06);
+  --glass-blur: blur(12px);
+  
+  --heading-gradient: linear-gradient(180deg, #1e130c 0%, #5c4e46 100%);
+  --name-gradient: linear-gradient(120deg, #1e130c 0%, #f15a24 100%);
+}
+
+:root.light-theme .glassy-item::before {
+  background: radial-gradient(
+    250px circle at var(--mouse-x, 30%) var(--mouse-y, 30%), 
+    rgba(241, 90, 36, 0.08), 
+    transparent 80%
+  );
+}
+
+/* Global Light Theme Component overrides */
+:root.light-theme [class*="glassCard3d"],
+:root.light-theme [class*="portraitCard3d"],
+:root.light-theme [class*="specCard"],
+:root.light-theme [class*="metricCard"],
+:root.light-theme [class*="sidebarItem"],
+:root.light-theme [class*="techBadge"],
+:root.light-theme [class*="btnSecondary"],
+:root.light-theme [class*="filterBar"] {
+  background: rgba(255, 255, 255, 0.55) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+:root.light-theme [class*="sidebarItemActive"] {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: var(--project-accent, var(--accent-color)) !important;
+  box-shadow: 0 12px 35px rgba(241, 90, 36, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+:root.light-theme [class*="btnPrimary"] {
+  background: var(--accent-color) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(241, 90, 36, 0.2) !important;
+}
+
+:root.light-theme [class*="btnPrimary"]:hover {
+  background: var(--accent-hover) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(241, 90, 36, 0.3) !important;
+}
+
+/* Badges global styling overrides */
+:root.light-theme [class*="locationBadge"],
+:root.light-theme [class*="brandBadge"] {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: var(--text-secondary) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+:root.light-theme [class*="statusBadge"] {
+  background: rgba(46, 213, 115, 0.06) !important;
+  border-color: rgba(46, 213, 115, 0.18) !important;
+  color: #1b8543 !important;
+}
+
+/* Floating Bottom Capsule Navbar overrides */
+:root.light-theme [class*="capsuleNav"] {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), 
+              0 0 0 1px rgba(0, 0, 0, 0.01), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+:root.light-theme [class*="navLink"] {
+  color: var(--text-secondary) !important;
+}
+
+:root.light-theme [class*="navLink"]:hover {
+  color: var(--text-primary) !important;
+  background: rgba(0, 0, 0, 0.03) !important;
+}
+
+:root.light-theme [class*="navLinkActive"] {
+  color: #000000 !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Enable global layout element transition rules */
+html, body, header, nav, main, footer, div, section, a, button, p, h1, h2, h3, h4, h5, h6, span {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }

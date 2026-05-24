@@ -95,7 +95,7 @@
   cursor: pointer;
   position: relative;
   transition: all 0.3s ease;
-  background: linear-gradient(120deg, #ffffff 0%, #f15a24 100%);
+  background: var(--name-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;

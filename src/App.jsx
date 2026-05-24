@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,6 +9,23 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
+
+  useEffect(() => {
+    if (theme === 'light') {
+      document.documentElement.classList.add('light-theme');
+    } else {
+      document.documentElement.classList.remove('light-theme');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   useEffect(() => {
     const handleMouseMove = (e) => {
       const items = document.querySelectorAll('.glassy-item');
@@ -26,7 +43,7 @@ function App() {
 
   return (
     <div className="app-wrapper">
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main className="app-container">
         <Hero />
         <About />

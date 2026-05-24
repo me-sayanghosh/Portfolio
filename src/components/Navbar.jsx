@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Briefcase, Trophy, MessageSquare } from 'lucide-react';
+import { Home, User, Briefcase, Trophy, MessageSquare, Sun, Moon } from 'lucide-react';
 import styles from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({ theme, toggleTheme }) => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -36,9 +36,17 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Sleek top header containing only the logo for high-end minimalism */}
+      {/* Sleek top header containing logo and premium theme toggle button */}
       <header className={styles.topHeader}>
         <div className={styles.logo}>Sayan</div>
+        <button 
+          className={styles.themeToggleBtn}
+          onClick={toggleTheme}
+          aria-label="Toggle Theme"
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
       </header>
 
       {/* Floating fixed bottom capsule navbar */}

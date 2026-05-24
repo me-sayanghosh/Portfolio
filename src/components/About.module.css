@@ -27,7 +27,7 @@
   margin-bottom: 1rem;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  background: linear-gradient(180deg, #ffffff 0%, #d1c8c3 100%);
+  background: var(--heading-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
