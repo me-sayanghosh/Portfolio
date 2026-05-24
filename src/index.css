@@ -544,42 +544,60 @@ html, body, header, nav, main, footer, div, section, a, button, p, h1, h2, h3, h
     background-color: var(--bg-color) !important; /* Ensure everything below 720px renders in gorgeous high-contrast obsidian black */
   }
 
-  /* 2. Remove heavy desktop blurs but keep a lightweight, optimized backdrop-filter for premium glassmorphism on mobile */
+  /* 2. Completely disable heavy wildcard transitions on mobile to make scrolling and theme switching instantaneous and lag-free */
+  html, body, header, nav, main, footer, div, section, a, button, p, h1, h2, h3, h4, h5, h6, span, input, textarea {
+    transition: none !important;
+  }
+
+  /* 3. Remove backdrop-filter blur rendering pipeline bottlenecks on mobile screens */
   [class*="capsuleNav"],
   [class*="glassCard3d"],
   [class*="portraitCard3d"],
   [class*="sidebarItem"],
   [class*="serviceCard"],
-  [class*="achievementCard3d"] {
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+  [class*="achievementCard3d"],
+  [class*="formCard"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
-  /* 3. Make dark-mode mobile containers translucent, rich warm obsidian glass instead of flat dark brown */
+  /* 4. Make dark-mode mobile containers highly-polished and warm obsidian charcoal (95% opaque, lag-free) */
   :root:not(.light-theme) [class*="glassCard3d"],
   :root:not(.light-theme) [class*="portraitCard3d"],
   :root:not(.light-theme) [class*="sidebarItem"],
   :root:not(.light-theme) [class*="serviceCard"],
   :root:not(.light-theme) [class*="achievementCard3d"],
   :root:not(.light-theme) [class*="formCard"] {
-    background: rgba(12, 8, 6, 0.88) !important;
+    background: rgba(14, 10, 8, 0.95) !important;
     border-color: rgba(255, 255, 255, 0.07) !important;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
   }
 
-  /* 4. Make light-mode mobile containers beautifully glassy and frosted */
+  :root:not(.light-theme) [class*="capsuleNav"] {
+    background: rgba(8, 6, 5, 0.94) !important;
+    border-color: rgba(255, 255, 255, 0.09) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75) !important;
+  }
+
+  /* 5. Make light-mode mobile containers highly-polished and frosted white (95% opaque, lag-free) */
   :root.light-theme [class*="glassCard3d"],
   :root.light-theme [class*="portraitCard3d"],
   :root.light-theme [class*="sidebarItem"],
   :root.light-theme [class*="serviceCard"],
   :root.light-theme [class*="achievementCard3d"],
   :root.light-theme [class*="formCard"] {
-    background: rgba(255, 255, 255, 0.65) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
     border-color: rgba(255, 255, 255, 0.48) !important;
     box-shadow: 0 10px 25px rgba(30, 19, 12, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   }
 
-  /* 5. Disable heavy background blurs and ambient glow circles */
+  :root.light-theme [class*="capsuleNav"] {
+    background: rgba(255, 255, 255, 0.96) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* 6. Disable heavy background blurs and ambient glow circles */
   [class*="ambientGlow"],
   [class*="tiltWrapper"]::before {
     display: none !important;
