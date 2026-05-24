@@ -17,11 +17,7 @@ const Services = () => {
       description: 'Bringing highly polished static mockups and interactive flows to life. I build fluid, component-driven, responsive UI grids centered around strict performance and visual elegance.',
       accent: '#00f2fe',
       glow: 'rgba(0, 242, 254, 0.15)',
-      tech: ['React.js', 'Vite', 'GSAP', 'CSS Modules'],
-      metrics: [
-        { label: 'Lighthouse Score', value: '98+' },
-        { label: 'SEO Rating', value: '100' }
-      ]
+      tech: ['React.js', 'Vite', 'GSAP', 'CSS Modules']
     },
     {
       icon: <Server size={22} className="anim-float" />,
@@ -30,11 +26,7 @@ const Services = () => {
       description: 'Developing rock-solid server architectures to power high-throughput web clients. Dedicated to clean RESTful APIs, optimized database queries, and secure user session management.',
       accent: '#8a2be2',
       glow: 'rgba(138, 43, 226, 0.15)',
-      tech: ['Node.js', 'Express', 'FastAPI', 'MongoDB'],
-      metrics: [
-        { label: 'API Latency', value: '<80ms' },
-        { label: 'Uptime target', value: '99.9%' }
-      ]
+      tech: ['Node.js', 'Express', 'FastAPI', 'MongoDB']
     },
     {
       icon: <Paintbrush size={22} className="anim-wiggle" />,
@@ -43,11 +35,7 @@ const Services = () => {
       description: 'Designing accessible, interactive, and visually memorable layouts. Every design choice is driven by user behavioral patterns, layout accessibility standards, and clean grid harmony.',
       accent: '#ec008c',
       glow: 'rgba(236, 0, 140, 0.15)',
-      tech: ['Figma Prototyping', 'Design Systems', 'UX Auditing'],
-      metrics: [
-        { label: 'Accessibility', value: 'WCAG AAA' },
-        { label: 'Figma Iterations', value: 'Clean AutoLayout' }
-      ]
+      tech: ['Figma Prototyping', 'Design Systems', 'UX Auditing']
     },
     {
       icon: <Zap size={22} className="anim-bounce" />,
@@ -56,11 +44,7 @@ const Services = () => {
       description: 'Optimizing resource delivery and resolving pipeline bottlenecks. I implement strict static optimization, intelligent data caching, and structural schema tagging for higher Google ranking.',
       accent: '#f15a24',
       glow: 'rgba(241, 90, 36, 0.15)',
-      tech: ['Webpack/Vite Tuning', 'Static Generation', 'Microdata'],
-      metrics: [
-        { label: 'FCP Speed', value: '<0.4s' },
-        { label: 'Core Web Vitals', value: 'Passed' }
-      ]
+      tech: ['Webpack/Vite Tuning', 'Static Generation', 'Microdata']
     }
   ];
 
@@ -148,16 +132,7 @@ const Services = () => {
               </div>
             </div>
 
-            {/* Performance telemetry stats */}
-            <div className={styles.telemetryGrid}>
-              {service.metrics.map((m) => (
-                <div key={m.label} className={styles.telemetryCard}>
-                  <span className={styles.telemetryVal}>{m.value}</span>
-                  <span className={styles.telemetryLabel}>{m.label}</span>
-                </div>
-              ))}
-            </div>
-            
+
             <div className={styles.ambientGlow} />
           </div>
         ))}
