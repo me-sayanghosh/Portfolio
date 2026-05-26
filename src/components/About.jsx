@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sparkles, Calendar, MapPin, Briefcase, FileText, ArrowRight } from 'lucide-react';
+import { Sparkles, Code, MapPin, Briefcase, FileText, ArrowRight } from 'lucide-react';
 import styles from './About.module.css';
 import SayanImg from '../pictures/Sayan.png';
 
@@ -75,7 +75,7 @@ const About = () => {
 
   const specs = [
     { icon: <Briefcase size={14} />, label: 'Role', value: 'Full-Stack Dev', animationClass: 'anim-float' },
-    { icon: <Calendar size={14} />, label: 'Experience', value: '3+ Years', animationClass: 'anim-pulse' },
+    { icon: <Code size={14} />, label: 'Projects', value: '15+ Completed', animationClass: 'anim-pulse' },
     { icon: <MapPin size={14} />, label: 'Location', value: 'Kalyani, India', animationClass: 'anim-bounce' }
   ];
 
@@ -133,7 +133,7 @@ const About = () => {
           
           <div className={`${styles.paragraphs} anim-about-in`}>
             <p>
-              I am Sayan, a dedicated full-stack web developer and programmer working remotely from my workspace in Kalyani, India. Over the past 3+ years, I have explored and masterfully engineered web apps spanning multiple stacks: building high-performance interfaces, developing secure API gateways, and implementing clean database schemas.
+              I am Sayan, a dedicated full-stack web developer and programmer working remotely from my workspace in Kalyani, India. As a passionate fresher and self-taught software engineer, I have spent countless hours mastering the modern web ecosystem: engineering high-performance interfaces, developing secure API gateways, and structuring clean database schemas.
             </p>
             <p>
               Currently, I design and manage web systems for the **Monipur School and College Science Club** as a Web Developer, ensuring modern UI delivery and robust application performance. Most of my daily routines revolve around researching performance bottlenecks, structuring reusable components, and playing with modern animations.
