@@ -63,8 +63,8 @@ const CanvasGrid = () => {
       ctx.clearRect(0, 0, width, height);
 
       const isLight = document.documentElement.classList.contains('light-theme');
-      const baseLineColor = isLight ? 'rgba(241, 90, 36, 0.035)' : 'rgba(255, 255, 255, 0.015)';
-      const dotColor = isLight ? 'rgba(241, 90, 36, 0.08)' : 'rgba(255, 255, 255, 0.05)';
+      const baseLineColor = isLight ? 'rgba(241, 90, 36, 0.065)' : 'rgba(255, 255, 255, 0.015)';
+      const dotColor = isLight ? 'rgba(241, 90, 36, 0.12)' : 'rgba(255, 255, 255, 0.05)';
       const gridSize = 60;
 
       // Draw static grid lines
@@ -154,10 +154,10 @@ const CanvasGrid = () => {
       const isLight = theme === 'light';
       return {
         isLight,
-        baseLineColor: isLight ? 'rgba(241, 90, 36, 0.035)' : 'rgba(255, 255, 255, 0.015)',
-        glowColor: isLight ? 'rgba(241, 90, 36, 0.15)' : 'rgba(241, 90, 36, 0.12)',
-        glowBorderColor: isLight ? 'rgba(241, 90, 36, 0.06)' : 'rgba(241, 90, 36, 0.04)',
-        dotBaseColor: isLight ? 'rgba(241, 90, 36, 0.08)' : 'rgba(255, 255, 255, 0.06)',
+        baseLineColor: isLight ? 'rgba(241, 90, 36, 0.065)' : 'rgba(255, 255, 255, 0.015)',
+        glowColor: isLight ? 'rgba(241, 90, 36, 0.22)' : 'rgba(241, 90, 36, 0.12)',
+        glowBorderColor: isLight ? 'rgba(241, 90, 36, 0.1)' : 'rgba(241, 90, 36, 0.04)',
+        dotBaseColor: isLight ? 'rgba(241, 90, 36, 0.12)' : 'rgba(255, 255, 255, 0.06)',
         dotGlowColor: 'rgba(241, 90, 36, 0.75)',
       };
     };
