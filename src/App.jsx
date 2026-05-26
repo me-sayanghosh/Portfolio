@@ -30,14 +30,12 @@ function App() {
 
   // Premium GSAP + Lenis Smooth Inertial Scroll Integration
   useEffect(() => {
-    // Only smooth scroll on desktop viewport widths to keep mobile performance native & lag-free
-    if (window.innerWidth <= 768) return;
-
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1, // Slightly snappier for native feel across all devices
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Luxurious inertial ease curve
       smoothWheel: true,
-      syncTouch: false, // Use native touch gestures on mobile/tablet to avoid jank
+      syncTouch: true, // Enable kinetic smooth touch scrolling on mobile
+      touchInertiaMultiplier: 1.2, // Momentum scroll factor on touch devices
     });
 
     // Synchronize ScrollTrigger with Lenis scroll cycles
