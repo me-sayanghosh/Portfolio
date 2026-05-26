@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 const CanvasGrid = () => {
   const canvasRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0, isActive: false });
+  const [isMobile, setIsMobile] = useState(false);
   const [theme, setTheme] = useState('dark');
 
   // Detect theme dynamically by checking classes on documentElement
@@ -24,9 +25,12 @@ const CanvasGrid = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Handle window resizing
+  // Handle window resizing and mobile detection
   useEffect(() => {
     const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+
       const canvas = canvasRef.current;
       if (!canvas) return;
 
@@ -40,29 +44,77 @@ const CanvasGrid = () => {
       if (ctx) {
         ctx.scale(dpr, dpr);
       }
+
+      // If mobile, draw a single beautiful static grid frame and skip active drawing
+      if (mobile) {
+        drawStaticGrid();
+      }
+    };
+
+    const drawStaticGrid = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const width = canvas.width / (window.devicePixelRatio || 1);
+      const height = canvas.height / (window.devicePixelRatio || 1);
+
+      ctx.clearRect(0, 0, width, height);
+
+      const isLight = document.documentElement.classList.contains('light-theme');
+      
+      // Warm copper settings for light theme, standard stardust settings for dark theme
+      const baseLineColor = isLight ? 'rgba(241, 90, 36, 0.055)' : 'rgba(255, 255, 255, 0.015)';
+      const dotColor = isLight ? 'rgba(241, 90, 36, 0.10)' : 'rgba(255, 255, 255, 0.05)';
+      const gridSize = 80; // Larger grid size on mobile = cleaner, less busy visual weight
+
+      // Draw static grid lines
+      ctx.strokeStyle = baseLineColor;
+      ctx.lineWidth = 1;
+
+      ctx.beginPath();
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+      }
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+      }
+      ctx.stroke();
+
+      // Draw static dots
+      ctx.fillStyle = dotColor;
+      for (let x = 0; x < width; x += gridSize) {
+        for (let y = 0; y < height; y += gridSize) {
+          ctx.beginPath();
+          ctx.arc(x, y, 1, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
     };
 
     window.addEventListener('resize', handleResize);
     handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [theme]);
 
-  // Main interactive logic for both mobile and desktop
+  // Main interactive logic for desktop ONLY (width > 768px)
+  // This bypasses requestAnimationFrame completely on mobile to preserve 100% scrolling fluidity.
   useEffect(() => {
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let animationFrameId;
-    
-    // Mobile optimization: increase grid spacing to 80px on screens <= 768px.
-    // This reduces the number of dots drawn by 50%, maintaining locked 60fps on mobile.
-    const isMobile = window.innerWidth <= 768;
-    const gridSize = isMobile ? 80 : 60;
-    const pullRadius = isMobile ? 200 : 260; // Influence zone of touch/mouse gravity
-    const maxPull = isMobile ? 5 : 7; // Max displacement in pixels
+    const gridSize = 60;
+    const pullRadius = 260; // Influence zone of mouse gravity
+    const maxPull = 7; // Max displacement in pixels
 
     // Initialize mouse at center of viewport initially
     const initMousePos = () => {
@@ -85,14 +137,6 @@ const CanvasGrid = () => {
       mouseRef.current.isActive = false;
     };
 
-    const handleTouchStart = (e) => {
-      if (e.touches.length > 0) {
-        mouseRef.current.targetX = e.touches[0].clientX;
-        mouseRef.current.targetY = e.touches[0].clientY;
-        mouseRef.current.isActive = true;
-      }
-    };
-
     const handleTouchMove = (e) => {
       if (e.touches.length > 0) {
         mouseRef.current.targetX = e.touches[0].clientX;
@@ -101,16 +145,9 @@ const CanvasGrid = () => {
       }
     };
 
-    const handleTouchEnd = () => {
-      mouseRef.current.isActive = false;
-    };
-
     window.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseleave', handleMouseLeave);
-    window.addEventListener('touchstart', handleTouchStart);
     window.addEventListener('touchmove', handleTouchMove);
-    window.addEventListener('touchend', handleTouchEnd);
-    window.addEventListener('touchcancel', handleTouchEnd);
 
     // Dynamic color tokens based on active theme
     const getColors = () => {
@@ -136,7 +173,7 @@ const CanvasGrid = () => {
       const mouse = mouseRef.current;
       
       if (!mouse.isActive) {
-        // Ambient organic drift when mouse/touch is off-screen or inactive
+        // Ambient organic drift when mouse is off-screen or inactive
         const time = timestamp * 0.0008;
         mouse.targetX = width / 2 + Math.cos(time * 0.6) * (width * 0.25);
         mouse.targetY = height / 2 + Math.sin(time * 0.4) * (height * 0.2);
@@ -147,14 +184,13 @@ const CanvasGrid = () => {
       mouse.y += (mouse.targetY - mouse.y) * 0.08;
 
       // 1. Draw Spotlight Glowing Background Radial Gradient
-      const spotGlow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, isMobile ? 180 : 250);
+      const spotGlow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 250);
       spotGlow.addColorStop(0, colors.isLight ? 'rgba(241, 90, 36, 0.03)' : 'rgba(241, 90, 36, 0.04)');
       spotGlow.addColorStop(1, 'rgba(241, 90, 36, 0)');
       ctx.fillStyle = spotGlow;
       ctx.fillRect(0, 0, width, height);
 
       // 2. Draw Grid Lines
-      // Setup dynamic radial gradient for the illuminated lines
       const lineGradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, pullRadius);
       lineGradient.addColorStop(0, colors.glowColor);
       lineGradient.addColorStop(0.5, colors.glowBorderColor);
@@ -189,7 +225,6 @@ const CanvasGrid = () => {
           let fillStyle = colors.dotBaseColor;
 
           if (dist < pullRadius) {
-            // Smooth custom curve for gravity influence
             const influence = (1 - dist / pullRadius) ** 1.8;
             
             // Pull dots slightly towards the cursor
@@ -198,10 +233,8 @@ const CanvasGrid = () => {
             drawX += Math.cos(angle) * displacement;
             drawY += Math.sin(angle) * displacement;
 
-            // Increase size and glow as dots get closer
             dotSize = 1 + 1.2 * influence;
             
-            // Interpolate color from base to copper glow
             const alpha = colors.isLight ? (0.12 + 0.48 * influence) : (0.06 + 0.54 * influence);
             fillStyle = `rgba(241, 90, 36, ${alpha})`;
           }
@@ -222,12 +255,9 @@ const CanvasGrid = () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
-      window.removeEventListener('touchend', handleTouchEnd);
-      window.removeEventListener('touchcancel', handleTouchEnd);
     };
-  }, [theme]);
+  }, [isMobile, theme]);
 
   return (
     <canvas
