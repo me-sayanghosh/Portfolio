@@ -1,8 +1,16 @@
-import React from 'react';
-import { FaFacebook as Facebook, FaTwitter as Twitter, FaLinkedin as Linkedin, FaGithub as Github } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaFacebook as Facebook, FaTwitter as Twitter, FaLinkedin as Linkedin, FaGithub as Github, FaRegCopy, FaCheck } from 'react-icons/fa';
 import styles from './Footer.module.css';
 
 const Footer = () => {
+  const [copiedField, setCopiedField] = useState(null);
+
+  const handleCopy = (text, field) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={`app-container ${styles.grid}`}>
@@ -22,11 +30,39 @@ const Footer = () => {
         <div className={styles.contactDetails}>
           <div className={styles.infoBlock}>
             <strong>Email</strong>
-            <p>sayanghosh1887@gmail.com</p>
+            <div className={styles.contactWrapper}>
+              <p className={styles.contactText}>sayanghosh1887@gmail.com</p>
+              <button 
+                onClick={() => handleCopy('sayanghosh1887@gmail.com', 'email')} 
+                className={styles.copyBtn} 
+                data-tooltip={copiedField === 'email' ? "Copied!" : "Copy Email"}
+                aria-label="Copy Email Address"
+              >
+                {copiedField === 'email' ? (
+                  <FaCheck className={styles.copiedIcon} size={11} />
+                ) : (
+                  <FaRegCopy className={styles.copyIcon} size={11} />
+                )}
+              </button>
+            </div>
           </div>
           <div className={styles.infoBlock}>
             <strong>Phone</strong>
-            <p>+91 9339740537</p>
+            <div className={styles.contactWrapper}>
+              <p className={styles.contactText}>+91 9339740537</p>
+              <button 
+                onClick={() => handleCopy('+91 9339740537', 'phone')} 
+                className={styles.copyBtn} 
+                data-tooltip={copiedField === 'phone' ? "Copied!" : "Copy Phone"}
+                aria-label="Copy Phone Number"
+              >
+                {copiedField === 'phone' ? (
+                  <FaCheck className={styles.copiedIcon} size={11} />
+                ) : (
+                  <FaRegCopy className={styles.copyIcon} size={11} />
+                )}
+              </button>
+            </div>
           </div>
           <div className={styles.infoBlock}>
             <strong>Address</strong>

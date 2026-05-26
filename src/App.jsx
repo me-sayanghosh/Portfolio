@@ -7,6 +7,7 @@ import Services from './components/Services';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CanvasGrid from './components/CanvasGrid';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <div className="app-wrapper">
+      <CanvasGrid />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main className="app-container">
         <Hero />
