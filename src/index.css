@@ -554,6 +554,23 @@ html, body, header, nav, main, footer, div, section, a, button, p, h1, h2, h3, h
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* Tactile clicky bounce animation for all interactive buttons and triggers */
+button:active,
+a[class*="btn"]:active,
+button[class*="btn"]:active,
+[class*="btnPrimary"]:active,
+[class*="btnSecondary"]:active,
+[class*="btnPrimaryMini"]:active,
+[class*="btnSecondaryMini"]:active,
+[class*="submitBtn"]:active,
+[class*="themeToggleBtn"]:active,
+[class*="copyBtn"]:active,
+[class*="filterBtn"]:active,
+[class*="navLink"]:active {
+  transform: scale(0.94) !important;
+  transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
 /* Mobile performance optimization overrides to eliminate scroll lag (jank) */
 @media (max-width: 768px) {
   /* 1. Disable sliding animations, restrict background gradient height, and disable fixed backgrounds to prevent scroll lag */

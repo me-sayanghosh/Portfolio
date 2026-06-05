@@ -125,7 +125,7 @@ const Services = () => {
             {/* Sub Tech Badges */}
             <div className={styles.techBlueprint}>
               <h4 className={styles.blueprintTitle}>TECH STACK</h4>
-              <div className={styles.badges}>
+              <div className={styles.tags}>
                 {service.tech.map((t) => (
                   <span key={t} className={styles.badge}>{t}</span>
                 ))}

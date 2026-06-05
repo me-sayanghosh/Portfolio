@@ -65,11 +65,11 @@ const CanvasGrid = () => {
       const isLight = document.documentElement.classList.contains('light-theme');
       
       // Warm copper settings for light theme, standard stardust settings for dark theme
-      const baseLineColor = isLight ? 'rgba(241, 90, 36, 0.055)' : 'rgba(255, 255, 255, 0.015)';
+      const baseLineColor = isLight ? 'rgba(241, 90, 36, 0.08)' : 'rgba(255, 255, 255, 0.025)';
       const dotColor = isLight ? 'rgba(241, 90, 36, 0.10)' : 'rgba(255, 255, 255, 0.05)';
       const gridSize = 80; // Larger grid size on mobile = cleaner, less busy visual weight
 
-      // Draw static grid lines
+      // Draw static grid lines (restored with subtle visibility)
       ctx.strokeStyle = baseLineColor;
       ctx.lineWidth = 1;
 
@@ -154,9 +154,9 @@ const CanvasGrid = () => {
       const isLight = theme === 'light';
       return {
         isLight,
-        baseLineColor: isLight ? 'rgba(241, 90, 36, 0.065)' : 'rgba(255, 255, 255, 0.015)',
-        glowColor: isLight ? 'rgba(241, 90, 36, 0.22)' : 'rgba(241, 90, 36, 0.12)',
-        glowBorderColor: isLight ? 'rgba(241, 90, 36, 0.1)' : 'rgba(241, 90, 36, 0.04)',
+        baseLineColor: isLight ? 'rgba(241, 90, 36, 0.08)' : 'rgba(255, 255, 255, 0.025)',
+        glowColor: isLight ? 'rgba(241, 90, 36, 0.26)' : 'rgba(241, 90, 36, 0.16)',
+        glowBorderColor: isLight ? 'rgba(241, 90, 36, 0.12)' : 'rgba(241, 90, 36, 0.06)',
         dotBaseColor: isLight ? 'rgba(241, 90, 36, 0.12)' : 'rgba(255, 255, 255, 0.06)',
         dotGlowColor: 'rgba(241, 90, 36, 0.75)',
       };
@@ -190,7 +190,7 @@ const CanvasGrid = () => {
       ctx.fillStyle = spotGlow;
       ctx.fillRect(0, 0, width, height);
 
-      // 2. Draw Grid Lines
+      // 2. Draw Grid Lines (restored with subtle visibility)
       const lineGradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, pullRadius);
       lineGradient.addColorStop(0, colors.glowColor);
       lineGradient.addColorStop(0.5, colors.glowBorderColor);

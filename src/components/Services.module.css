@@ -187,26 +187,54 @@
   margin-bottom: 0.85rem;
 }
 
-.badges {
+.tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
 }
 
 .badge {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.85);
-  padding: 0.25rem 0.6rem;
-  font-size: 0.75rem;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  padding: 0.4rem 0.9rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  border-radius: 100px !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: none !important;
 }
 
 .badge:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
-  color: var(--text-primary);
+  background: var(--service-accent) !important;
+  border-color: var(--service-accent) !important;
+  color: #050200 !important;
+  box-shadow: 0 4px 12px var(--service-glow) !important;
+  transform: translateY(-2px) scale(1.05) !important;
+}
+
+/* Light Theme Overrides */
+:global(.light-theme) .tags {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+:global(.light-theme) .badge {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+}
+
+:global(.light-theme) .badge:hover {
+  background: var(--service-accent) !important;
+  border-color: var(--service-accent) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px var(--service-glow) !important;
 }
 
 /* Telemetry Stats */
