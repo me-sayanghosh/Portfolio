@@ -751,3 +751,89 @@
     gap: 2rem;
   }
 }
+
+/* Light Theme overrides for Projects and Featured cards */
+:global(.light-theme) .featuredCard {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(30, 19, 12, 0.16) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 15px 35px rgba(30, 19, 12, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+:global(.light-theme) .featuredCard:hover {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: var(--project-accent) !important;
+  box-shadow: 0 20px 45px rgba(30, 19, 12, 0.08), 
+              0 0 15px var(--project-glow),
+              inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+:global(.light-theme) .featuredImageWrapper {
+  border-bottom: 1px solid rgba(30, 19, 12, 0.08) !important;
+}
+
+:global(.light-theme) .featuredBadge {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: var(--text-secondary) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+:global(.light-theme) .miniBadge {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: var(--text-secondary) !important;
+}
+
+:global(.light-theme) .btnSecondaryMini {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: var(--text-primary) !important;
+}
+
+:global(.light-theme) .btnSecondaryMini:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+  color: var(--text-primary) !important;
+}
+
+:global(.light-theme) .btnPrimaryMini {
+  color: #ffffff !important;
+}
+
+:global(.light-theme) .itemIndicator {
+  background: rgba(30, 19, 12, 0.16) !important;
+}
+
+:global(.light-theme) .sidebarItemActive .itemIndicator {
+  background: var(--project-accent) !important;
+}
+
+:global(.light-theme) .techContainer {
+  border-top-color: rgba(30, 19, 12, 0.08) !important;
+}
+
+:global(.light-theme) .metricsGrid {
+  border-top-color: rgba(30, 19, 12, 0.08) !important;
+}
+
+:global(.light-theme) .badge {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  color: var(--text-secondary) !important;
+}
+
+:global(.light-theme) .badge:hover {
+  background: rgba(241, 90, 36, 0.08) !important;
+  border-color: rgba(241, 90, 36, 0.25) !important;
+  color: var(--accent-color) !important;
+  box-shadow: 0 4px 12px rgba(241, 90, 36, 0.1) !important;
+}
+
+:global(.light-theme) .techHeading {
+  opacity: 0.8 !important;
+}
+
+:global(.light-theme) .metricLabel {
+  opacity: 0.8 !important;
+}

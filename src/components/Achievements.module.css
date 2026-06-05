@@ -257,12 +257,42 @@
   color: var(--text-primary);
 }
 
-:root.light-theme .btnSecondary {
-  background: rgba(0, 0, 0, 0.02);
-  border-color: rgba(0, 0, 0, 0.1);
+:global(.light-theme) .btnSecondary {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border-color: rgba(30, 19, 12, 0.16) !important;
+  color: var(--text-primary) !important;
 }
 
-:root.light-theme .btnSecondary:hover {
-  background: rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 0, 0, 0.2);
+:global(.light-theme) .btnSecondary:hover {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(241, 90, 36, 0.25) !important;
+  color: var(--accent-hover) !important;
+  box-shadow: 0 4px 15px rgba(30, 19, 12, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Light Theme overrides for Achievements elements */
+:global(.light-theme) .sectionPadding {
+  border-top-color: rgba(30, 19, 12, 0.08) !important;
+}
+
+:global(.light-theme) .imageOverlayContainer {
+  border-bottom-color: rgba(30, 19, 12, 0.08) !important;
+}
+
+:global(.light-theme) .iconBox {
+  border-color: rgba(30, 19, 12, 0.12) !important;
+  background-color: rgba(30, 19, 12, 0.03) !important;
+}
+
+:global(.light-theme) .achievementCard3d:hover .iconBox {
+  background-color: var(--ach-accent) !important;
+  color: #ffffff !important;
+}
+
+:global(.light-theme) .cardGlare {
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(241, 90, 36, 0.08) 0%,
+    transparent 60%
+  ) !important;
 }

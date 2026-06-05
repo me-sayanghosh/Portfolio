@@ -260,3 +260,24 @@
     height: 34px;
   }
 }
+
+/* Light Theme overrides for Navbar capsuleNav and tooltips */
+:global(.light-theme) .capsuleNav:hover {
+  border-color: rgba(30, 19, 12, 0.16) !important;
+  box-shadow: 0 20px 45px rgba(30, 19, 12, 0.12), 
+              0 0 15px rgba(241, 90, 36, 0.05),
+              inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+:global(.light-theme) .navLink[data-tooltip]::after {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(30, 19, 12, 0.16) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 10px 25px rgba(30, 19, 12, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+:global(.light-theme) .navLink[data-tooltip]::before {
+  border-color: rgba(255, 255, 255, 0.96) transparent transparent !important;
+}

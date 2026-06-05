@@ -238,15 +238,15 @@ button {
 :root.light-theme {
   --bg-color: #faf7f2;
   --bg-gradient: linear-gradient(180deg, #ffeadd 0%, #fcf9f5 35%, #faf7f2 100%);
-  --bg-surface: rgba(0, 0, 0, 0.02);
+  --bg-surface: rgba(30, 19, 12, 0.02);
   --text-primary: #1e130c;
   --text-secondary: #5c4e46;
   --accent-color: #f15a24;
   --accent-hover: #cf4310;
-  --border-color: rgba(0, 0, 0, 0.08);
+  --border-color: rgba(30, 19, 12, 0.12);
   
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: 1px solid rgba(0, 0, 0, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: 1px solid rgba(30, 19, 12, 0.12);
   --glass-blur: blur(12px);
   
   --heading-gradient: linear-gradient(180deg, #1e130c 0%, #5c4e46 100%);
@@ -275,7 +275,7 @@ button {
 :root.light-theme [class*="telemetryCard"],
 :root.light-theme [class*="achievementCard3d"],
 :root.light-theme [class*="formCard"] {
-  background: rgba(255, 255, 255, 0.32) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
   border: 1px solid rgba(30, 19, 12, 0.16) !important;
   color: var(--text-primary) !important;
   box-shadow: 0 15px 35px rgba(30, 19, 12, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;

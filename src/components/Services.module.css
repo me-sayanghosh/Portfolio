@@ -300,3 +300,40 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Light Theme overrides for Services elements */
+:global(.light-theme) .servicesSection {
+  border-top-color: rgba(30, 19, 12, 0.08) !important;
+}
+
+:global(.light-theme) .techBlueprint {
+  border-top-color: rgba(30, 19, 12, 0.08) !important;
+}
+
+:global(.light-theme) .telemetryGrid {
+  border-top-color: rgba(30, 19, 12, 0.08) !important;
+}
+
+:global(.light-theme) .serviceCard::before {
+  background: radial-gradient(
+    180px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(241, 90, 36, 0.08),
+    transparent 80%
+  ) !important;
+}
+
+:global(.light-theme) .blueprintTitle {
+  opacity: 0.8 !important;
+}
+
+:global(.light-theme) .telemetryLabel {
+  opacity: 0.8 !important;
+}
+
+:global(.light-theme) .telemetryCard {
+  border-color: rgba(30, 19, 12, 0.08) !important;
+}
+
+:global(.light-theme) .serviceCard:hover .telemetryCard {
+  border-color: rgba(241, 90, 36, 0.15) !important;
+}
