@@ -1,0 +1,293 @@
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pretitle {
+  font-family: monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: var(--heading-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+}
+
+/* Repos Grid */
+.reposGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.repoCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.005) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 270px;
+  position: relative;
+  overflow: hidden;
+}
+
+.repoCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.repoCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-color);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(241, 90, 36, 0.15);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.75rem;
+}
+
+/* IDE / Mac Style Window Dots */
+.iconCircle {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.iconCircle::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #ef4444; /* red dot */
+  display: inline-block;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.5);
+}
+
+.iconCircle::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #fbbf24; /* yellow dot */
+  display: inline-block;
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.5);
+}
+
+.codeIcon {
+  color: var(--accent-color);
+  margin-left: 4px;
+  opacity: 0.85;
+}
+
+.githubLink {
+  color: var(--text-secondary);
+  opacity: 0.55;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.githubLink:hover {
+  color: var(--text-primary);
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.1) rotate(6deg);
+}
+
+.cardBody {
+  flex-grow: 1;
+  margin-bottom: 2.25rem;
+}
+
+.repoName {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.02em;
+  transition: color 0.25s ease;
+}
+
+.repoCard:hover .repoName {
+  color: var(--accent-color);
+}
+
+.repoDesc {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  opacity: 0.75;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1.5rem;
+}
+
+.statsGroup {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.statItem:hover {
+  opacity: 1;
+}
+
+.starIcon {
+  color: #fbbf24;
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.3));
+}
+
+.forkIcon {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.3));
+}
+
+.statValue {
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+/* Skeleton Loading State */
+.skeletonText {
+  width: 20px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  display: inline-block;
+  animation: skeletonPulse 1.5s infinite ease-in-out;
+}
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+}
+
+.metaRight {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.langBadge {
+  font-family: monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(241, 90, 36, 0.05);
+  border: 1px solid rgba(241, 90, 36, 0.12);
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  color: #ff8c5a;
+  text-shadow: 0 0 8px rgba(241, 90, 36, 0.2);
+}
+
+.exploreBtn {
+  color: var(--text-secondary);
+  opacity: 0.6;
+  transition: all 0.2s ease;
+  display: inline-flex;
+}
+
+.exploreBtn:hover {
+  color: var(--accent-color);
+  opacity: 1;
+  transform: translateX(2px) translateY(-2px);
+}
+
+/* Light Theme Overrides */
+:root.light-theme .repoCard {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 15px 35px rgba(30, 19, 12, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+:root.light-theme .repoCard:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: var(--accent-color);
+  box-shadow: 0 25px 50px rgba(30, 19, 12, 0.05), 0 0 20px rgba(241, 90, 36, 0.1);
+}
+
+:root.light-theme .githubLink {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+:root.light-theme .githubLink:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+:root.light-theme .cardFooter {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+:root.light-theme .langBadge {
+  background: rgba(241, 90, 36, 0.04);
+  border-color: rgba(241, 90, 36, 0.15);
+  color: #f15a24;
+  text-shadow: none;
+}
+
+:root.light-theme .skeletonText {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
+  }
+}

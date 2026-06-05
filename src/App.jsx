@@ -9,6 +9,9 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CanvasGrid from './components/CanvasGrid';
 import Blogs from './components/Blogs';
+import TechStack from './components/TechStack';
+import GitHubOSS from './components/GitHubOSS';
+import Guestbook from './components/Guestbook';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -103,10 +106,13 @@ function App() {
       <main className="app-container">
         <Hero />
         <About />
+        <TechStack />
         <Projects />
         <Services />
         <Achievements />
+        <GitHubOSS />
         <Blogs />
+        <Guestbook />
         <Contact />
       </main>
       <Footer />

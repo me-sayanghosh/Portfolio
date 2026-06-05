@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Briefcase, Trophy, MessageSquare, Sun, Moon, BookOpen } from 'lucide-react';
+import { Home, User, Briefcase, Sun, Moon, BookOpen, MessageSquare, Mail } from 'lucide-react';
 import styles from './Navbar.module.css';
 
 const Navbar = ({ theme, toggleTheme }) => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const sections = ['home', 'about', 'projects', 'achievements', 'blogs', 'contact'];
+    const sections = ['home', 'about', 'projects', 'blogs', 'guestbook', 'contact'];
     
     const handleScroll = () => {
       if (window.scrollY < 100) {
@@ -77,14 +77,6 @@ const Navbar = ({ theme, toggleTheme }) => {
             <span className={styles.activeDot} />
           </a>
           <a 
-            href="#achievements" 
-            className={`${styles.navLink} ${activeSection === 'achievements' ? styles.navLinkActive : ''}`}
-            data-tooltip="Achievements"
-          >
-            <Trophy size={18} className={activeSection === 'achievements' ? 'anim-wiggle' : ''} />
-            <span className={styles.activeDot} />
-          </a>
-          <a 
             href="#blogs" 
             className={`${styles.navLink} ${activeSection === 'blogs' ? styles.navLinkActive : ''}`}
             data-tooltip="Blogs"
@@ -93,11 +85,19 @@ const Navbar = ({ theme, toggleTheme }) => {
             <span className={styles.activeDot} />
           </a>
           <a 
+            href="#guestbook" 
+            className={`${styles.navLink} ${activeSection === 'guestbook' ? styles.navLinkActive : ''}`}
+            data-tooltip="Guestbook"
+          >
+            <MessageSquare size={18} className={activeSection === 'guestbook' ? 'anim-sway' : ''} />
+            <span className={styles.activeDot} />
+          </a>
+          <a 
             href="#contact" 
             className={`${styles.navLink} ${activeSection === 'contact' ? styles.navLinkActive : ''}`}
             data-tooltip="Contact"
           >
-            <MessageSquare size={18} className={activeSection === 'contact' ? 'anim-sway' : ''} />
+            <Mail size={18} className={activeSection === 'contact' ? 'anim-bounce' : ''} />
             <span className={styles.activeDot} />
           </a>
         </div>

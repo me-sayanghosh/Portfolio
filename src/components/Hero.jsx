@@ -51,7 +51,17 @@ const Hero = () => {
       
 
       <h1 className={`${styles.title} anim-hero`}>
-        I am <span className={styles.nameHighlight} onMouseMove={handleMouseMove} data-tooltip="Available Now">Sayan Ghosh</span>
+        I am <span className={styles.nameHighlight} onMouseMove={handleMouseMove} data-tooltip="Available Now">
+          {"Sayan Ghosh".split("").map((char, index) => (
+            <span 
+              key={index} 
+              className={styles.hoverLetter}
+              style={{ display: 'inline-block' }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
+        </span>
       </h1>
       
       <h2 className={`${styles.roleTitle} anim-hero`}>
