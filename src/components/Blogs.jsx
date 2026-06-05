@@ -507,6 +507,21 @@ Selecting the appropriate protocol simplifies backend logic. For visitor logs an
     return () => ctx.revert();
   }, []);
 
+  // Helper to parse inline markdown (bold ** and code `) into JSX components
+  const parseInlineMarkdown = (text) => {
+    if (!text) return '';
+    const regex = /(\*\*.*?\*\*|`.*?`)/g;
+    const parts = text.split(regex);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={i} className={styles.boldText}>{part.slice(2, -2)}</strong>;
+      } else if (part.startsWith('`') && part.endsWith('`')) {
+        return <code key={i} className={styles.inlineCode}>{part.slice(1, -1)}</code>;
+      }
+      return part;
+    });
+  };
+
   // Format content parser helper to make rich text render beautifully
   const renderArticleContent = (content) => {
     if (!content) return null;
@@ -515,20 +530,42 @@ Selecting the appropriate protocol simplifies backend logic. For visitor logs an
       const trimmed = paragraph.trim();
       if (!trimmed) return null;
 
+      // Handle horizontal rule
+      if (trimmed === '---') {
+        return <hr key={index} className={styles.artHr} />;
+      }
+
+      // Handle math blocks
+      if (trimmed.startsWith('$$') && trimmed.endsWith('$$')) {
+        const mathContent = trimmed.slice(2, -2).trim();
+        let cleanMath = mathContent
+          .replace(/\\text\{([a-zA-Z0-9_\s\(\)]+)\}/g, '$1')
+          .replace(/_\{([a-zA-Z0-9_\s\(\)]+)\}/g, ' ($1)')
+          .replace(/\\times/g, ' ×')
+          .replace(/\\rightarrow/g, ' →')
+          .replace(/\\frac\{([^\}]+)\}\{([^\}]+)\}/g, '$1 / $2');
+          
+        return (
+          <div key={index} className={styles.mathBlock}>
+            <span className={styles.mathText}>{cleanMath}</span>
+          </div>
+        );
+      }
+
       // Handle main title
       if (trimmed.startsWith('# ')) {
-        return <h1 key={index} className={styles.artH1}>{trimmed.replace('# ', '')}</h1>;
+        return <h1 key={index} className={styles.artH1}>{parseInlineMarkdown(trimmed.replace('# ', ''))}</h1>;
       }
       // Handle subheadings
       if (trimmed.startsWith('## ')) {
-        return <h2 key={index} className={styles.artH2}>{trimmed.replace('## ', '')}</h2>;
+        return <h2 key={index} className={styles.artH2}>{parseInlineMarkdown(trimmed.replace('## ', ''))}</h2>;
       }
       if (trimmed.startsWith('### ')) {
-        return <h3 key={index} className={styles.artH3}>{trimmed.replace('### ', '')}</h3>;
+        return <h3 key={index} className={styles.artH3}>{parseInlineMarkdown(trimmed.replace('### ', ''))}</h3>;
       }
       // Handle blockquotes
       if (trimmed.startsWith('> ')) {
-        return <blockquote key={index} className={styles.artQuote}>{trimmed.replace('> ', '')}</blockquote>;
+        return <blockquote key={index} className={styles.artQuote}>{parseInlineMarkdown(trimmed.replace('> ', ''))}</blockquote>;
       }
       // Handle code blocks
       if (trimmed.startsWith('```')) {
@@ -549,14 +586,14 @@ Selecting the appropriate protocol simplifies backend logic. For visitor logs an
         const listItems = trimmed.split('\n').map((li, i) => (
           <li key={i} className={styles.artLi}>
             <ChevronRight size={12} className={styles.liBullet} />
-            <span>{li.replace('* ', '')}</span>
+            <span>{parseInlineMarkdown(li.replace('* ', ''))}</span>
           </li>
         ));
         return <ul key={index} className={styles.artUl}>{listItems}</ul>;
       }
 
       // Default text rendering
-      return <p key={index} className={styles.artPara}>{trimmed}</p>;
+      return <p key={index} className={styles.artPara}>{parseInlineMarkdown(trimmed)}</p>;
     });
   };
 
@@ -628,7 +665,7 @@ Selecting the appropriate protocol simplifies backend logic. For visitor logs an
 
       {/* Immersive Slide-in Article Modal */}
       {selectedBlog && (
-        <div className={`${styles.modalOverlay} ${selectedBlog ? styles.modalVisible : ''}`}>
+        <div className={`${styles.modalOverlay} ${selectedBlog ? styles.modalVisible : ''}`} data-lenis-prevent>
           <div className={styles.modalContainer}>
             {/* Modal Header Progress Tracker */}
             <div className={styles.progressContainer}>
@@ -653,6 +690,7 @@ Selecting the appropriate protocol simplifies backend logic. For visitor logs an
               className={styles.modalContent} 
               ref={modalContentRef} 
               onScroll={handleModalScroll}
+              data-lenis-prevent
             >
               <article className={styles.articleBody}>
                 {/* Author Info Card */}
