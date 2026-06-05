@@ -31,8 +31,8 @@ const TechStack = () => {
         },
         {
           name: 'Next.js',
-          color: '#ffffff',
-          glow: 'rgba(255, 255, 255, 0.15)',
+          color: 'var(--text-primary)',
+          glow: 'var(--text-primary-glow)',
           svg: (
             <svg viewBox="0 0 180 180" width="100%" height="100%" fill="none" stroke="currentColor">
               <mask id="next-mask">
@@ -98,8 +98,8 @@ const TechStack = () => {
         },
         {
           name: 'Express',
-          color: '#ffffff',
-          glow: 'rgba(255, 255, 255, 0.15)',
+          color: 'var(--text-primary)',
+          glow: 'var(--text-primary-glow)',
           svg: (
             <svg viewBox="0 0 256 128" width="100%" height="100%" fill="none" stroke="currentColor" strokeWidth="6">
               <text x="10" y="85" fontSize="72" fontWeight="bold" fill="currentColor" fontFamily="monospace">ex.</text>

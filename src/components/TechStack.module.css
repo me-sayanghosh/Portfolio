@@ -152,9 +152,9 @@
 
 /* Light Theme Overrides */
 :root.light-theme .categoryCard {
-  background: rgba(255, 255, 255, 0.55);
-  border-color: rgba(255, 255, 255, 0.75);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  background: #ffffff !important;
+  border: 1px solid rgba(30, 19, 12, 0.20) !important;
+  box-shadow: 0 15px 35px rgba(30, 19, 12, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
 }
 
 :root.light-theme .categoryCard::before {
@@ -162,9 +162,9 @@
 }
 
 :root.light-theme .categoryCard:hover {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(241, 90, 36, 0.2);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: #ffffff !important;
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 25px 50px rgba(30, 19, 12, 0.1), 0 0 20px rgba(241, 90, 36, 0.06) !important;
 }
 
 :root.light-theme .cardHeader {
@@ -172,14 +172,34 @@
 }
 
 :root.light-theme .stackItem {
-  background: rgba(0, 0, 0, 0.015);
-  border-color: rgba(0, 0, 0, 0.05);
+  background: #faf7f2 !important;
+  border: 1px solid rgba(30, 19, 12, 0.16) !important;
+}
+
+:root.light-theme .logoContainer {
+  color: var(--text-primary);
+  opacity: 0.85; /* Much more visible than 0.6 */
+}
+
+:root.light-theme .itemName {
+  color: var(--text-primary);
+  opacity: 0.95; /* Highly readable */
 }
 
 :root.light-theme .stackItem:hover {
-  background: #ffffff;
-  border-color: var(--brand-color);
-  box-shadow: 0 8px 20px var(--brand-glow), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: #ffffff !important;
+  border-color: var(--brand-color) !important;
+  box-shadow: 0 8px 20px var(--brand-glow), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+:root.light-theme .stackItem:hover .logoContainer {
+  color: var(--brand-color);
+  opacity: 1;
+}
+
+:root.light-theme .stackItem:hover .itemName {
+  color: var(--text-primary);
+  opacity: 1;
 }
 
 @media (max-width: 768px) {

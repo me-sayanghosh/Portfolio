@@ -18,6 +18,7 @@
 
   --heading-gradient: linear-gradient(180deg, #ffffff 0%, #ece5e1 100%);
   --name-gradient: linear-gradient(120deg, #ffffff 0%, #f15a24 100%);
+  --text-primary-glow: rgba(255, 255, 255, 0.15);
 }
 
 * {
@@ -250,6 +251,7 @@ button {
   
   --heading-gradient: linear-gradient(180deg, #1e130c 0%, #5c4e46 100%);
   --name-gradient: linear-gradient(120deg, #1e130c 0%, #f15a24 100%);
+  --text-primary-glow: rgba(30, 19, 12, 0.15);
 }
 
 :root.light-theme .glassy-item::before {
@@ -274,7 +276,7 @@ button {
 :root.light-theme [class*="achievementCard3d"],
 :root.light-theme [class*="formCard"] {
   background: rgba(255, 255, 255, 0.32) !important;
-  border: 1px solid rgba(255, 255, 255, 0.48) !important;
+  border: 1px solid rgba(30, 19, 12, 0.16) !important;
   color: var(--text-primary) !important;
   box-shadow: 0 15px 35px rgba(30, 19, 12, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
@@ -289,7 +291,7 @@ button {
 :root.light-theme [class*="achievementCard3d"]:hover,
 :root.light-theme [class*="formCard"]:hover {
   background: rgba(255, 255, 255, 0.45) !important;
-  border-color: rgba(255, 255, 255, 0.65) !important;
+  border-color: rgba(241, 90, 36, 0.2) !important;
   box-shadow: 0 20px 45px rgba(30, 19, 12, 0.08), 
               0 0 15px rgba(241, 90, 36, 0.05),
               inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
