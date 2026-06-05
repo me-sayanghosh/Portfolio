@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import CanvasGrid from './components/CanvasGrid';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -138,7 +137,6 @@ function App() {
           <Route path="/achievements" element={<AchievementsPage />} />
         </Routes>
       </main>
-      <Footer />
     </div>
   );
 }

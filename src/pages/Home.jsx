@@ -9,6 +9,7 @@ import GitHubOSS from '../components/GitHubOSS';
 import Blogs from '../components/Blogs';
 import Guestbook from '../components/Guestbook';
 import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
       <Blogs featured={true} />
       <Guestbook featured={true} />
       <Contact />
+      <Footer />
     </>
   );
 };
