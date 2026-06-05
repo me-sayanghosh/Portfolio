@@ -137,6 +137,14 @@
   z-index: 100;
 }
 
+:global(.light-theme) .nameHighlight::after {
+  background: #ffffff;
+  border-color: rgba(241, 90, 36, 0.25);
+  color: #1e130c;
+  -webkit-text-fill-color: #1e130c;
+  box-shadow: 0 8px 20px rgba(30, 19, 12, 0.1);
+}
+
 .nameHighlight:hover::after {
   opacity: 1;
   visibility: visible;
