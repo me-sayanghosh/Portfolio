@@ -6,7 +6,7 @@ import styles from './Guestbook.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Guestbook = () => {
+const Guestbook = ({ featured }) => {
   const container = useRef(null);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
@@ -162,85 +162,89 @@ const Guestbook = () => {
     return () => ctx.revert();
   }, []);
 
+  const displaySignatures = featured ? signatures.slice(0, 3) : signatures;
+
   return (
     <section id="guestbook" className="section-padding" ref={container}>
       <div className={styles.sectionHeader}>
         <span className={`${styles.pretitle} anim-gb-header`}>VISITOR LOG</span>
-        <h2 className={`${styles.heading} anim-gb-header`}>Sign the Guestbook</h2>
+        <h2 className={`${styles.heading} anim-gb-header`}>{featured ? 'Guestbook Highlights' : 'Sign the Guestbook'}</h2>
       </div>
 
-      <div className={styles.guestbookGrid}>
+      <div className={`${styles.guestbookGrid} ${featured ? styles.featuredGrid : ''}`}>
         {/* Left Column: Signature Form Card */}
-        <div className={`${styles.formColumn} anim-gb-form`}>
-          <div className={styles.formCard}>
-            <div className={styles.formHeader}>
-              <Sparkles size={16} className={styles.headerIcon} />
-              <h3 className={styles.formTitle}>Leave your mark</h3>
+        {!featured && (
+          <div className={`${styles.formColumn} anim-gb-form`}>
+            <div className={styles.formCard}>
+              <div className={styles.formHeader}>
+                <Sparkles size={16} className={styles.headerIcon} />
+                <h3 className={styles.formTitle}>Leave your mark</h3>
+              </div>
+              
+              <form onSubmit={handleSubmit} className={styles.form}>
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>Your Name</label>
+                  <div className={styles.inputWrapper}>
+                    <User size={14} className={styles.fieldIcon} />
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Enter your name"
+                      className={styles.input}
+                      maxLength={40}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.inputGroup}>
+                  <div className={styles.labelLine}>
+                    <label className={styles.label}>Your Message</label>
+                    <span className={`${styles.charCount} ${message.length > maxCharLimit ? styles.charLimitExceeded : ''}`}>
+                      {message.length}/{maxCharLimit}
+                    </span>
+                  </div>
+                  <div className={styles.inputWrapper}>
+                    <textarea
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Write a friendly note..."
+                      className={styles.textarea}
+                      maxLength={200}
+                      rows={4}
+                    />
+                  </div>
+                </div>
+
+                {error && (
+                  <div className={styles.errorAlert}>
+                    <AlertCircle size={14} />
+                    <span>{error}</span>
+                  </div>
+                )}
+
+                {success && (
+                  <div className={styles.successAlert}>
+                    <Check size={14} />
+                    <span>Log signed successfully! Thank you.</span>
+                  </div>
+                )}
+
+                <button type="submit" className={styles.submitBtn}>
+                  <span>Sign Guestbook</span>
+                  <Send size={13} className={styles.sendIcon} />
+                </button>
+              </form>
             </div>
-            
-            <form onSubmit={handleSubmit} className={styles.form}>
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>Your Name</label>
-                <div className={styles.inputWrapper}>
-                  <User size={14} className={styles.fieldIcon} />
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter your name"
-                    className={styles.input}
-                    maxLength={40}
-                  />
-                </div>
-              </div>
-
-              <div className={styles.inputGroup}>
-                <div className={styles.labelLine}>
-                  <label className={styles.label}>Your Message</label>
-                  <span className={`${styles.charCount} ${message.length > maxCharLimit ? styles.charLimitExceeded : ''}`}>
-                    {message.length}/{maxCharLimit}
-                  </span>
-                </div>
-                <div className={styles.inputWrapper}>
-                  <textarea
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Write a friendly note..."
-                    className={styles.textarea}
-                    maxLength={200}
-                    rows={4}
-                  />
-                </div>
-              </div>
-
-              {error && (
-                <div className={styles.errorAlert}>
-                  <AlertCircle size={14} />
-                  <span>{error}</span>
-                </div>
-              )}
-
-              {success && (
-                <div className={styles.successAlert}>
-                  <Check size={14} />
-                  <span>Log signed successfully! Thank you.</span>
-                </div>
-              )}
-
-              <button type="submit" className={styles.submitBtn}>
-                <span>Sign Guestbook</span>
-                <Send size={13} className={styles.sendIcon} />
-              </button>
-            </form>
           </div>
-        </div>
+        )}
 
         {/* Right Column: Signatures Scrollable Feed */}
         <div className={`${styles.listColumn} anim-gb-list`}>
           <div className={styles.listHeader}>
             <div className={styles.listHeaderLeft}>
               <MessageSquare size={16} className={styles.listHeaderIcon} />
-              <h3 className={styles.listTitle}>Recent Signatures ({signatures.length})</h3>
+              <h3 className={styles.listTitle}>Recent Signatures ({displaySignatures.length})</h3>
             </div>
             <div className={styles.statusIndicator} title="Connected to Local Storage Log">
               <span className={styles.statusBlink} />
@@ -249,10 +253,10 @@ const Guestbook = () => {
           </div>
 
           <div className={styles.signaturesTimeline}>
-            {signatures.length === 0 ? (
+            {displaySignatures.length === 0 ? (
               <p className={styles.emptyFeed}>No signatures yet. Be the first to sign!</p>
             ) : (
-              signatures.map((sig) => (
+              displaySignatures.map((sig) => (
                 <div key={sig.id} className={styles.sigItem}>
                   <div 
                     className={styles.avatar}
@@ -274,6 +278,14 @@ const Guestbook = () => {
           </div>
         </div>
       </div>
+
+      {featured && (
+        <div className={styles.ctaFooter}>
+          <a href="/guestbook" className={styles.btnSecondary}>
+            <span>Sign & View Full Guestbook</span>
+          </a>
+        </div>
+      )}
     </section>
   );
 };

@@ -11,7 +11,7 @@ import HoopItImg from '../assets/HoopIt.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Projects = () => {
+const Projects = ({ featured }) => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeProject, setActiveProject] = useState(0);
   const container = useRef(null);
@@ -175,8 +175,9 @@ const Projects = () => {
         },
         y: 0,
         opacity: 1,
-        duration: 1.4,
-        ease: 'power4.out'
+        duration: 1.2,
+        ease: 'power4.out',
+        stagger: 0.1
       });
     }, container);
 
@@ -185,6 +186,7 @@ const Projects = () => {
 
   // GSAP state switch transition effect
   useEffect(() => {
+    if (featured) return;
     if (!detailsRef.current || !previewRef.current) return;
 
     const elementsToAnimate = detailsRef.current.querySelectorAll('.gsap-fade-in');
@@ -203,12 +205,68 @@ const Projects = () => {
       { opacity: 0, scale: 0.96 },
       { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }
     );
-  }, [activeProject, activeCategory]);
+  }, [activeProject, activeCategory, featured]);
 
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
     setActiveProject(0);
   };
+
+  if (featured) {
+    const featuredProjects = projects.slice(0, 2);
+    return (
+      <section id="projects" className="section-padding" ref={container}>
+        <div className={styles.sectionHeader}>
+          <span className={`${styles.pretitle} anim-project-header`}>CREATIVE PORTFOLIO</span>
+          <h2 className={`${styles.heading} anim-project-header`}>Featured Projects</h2>
+        </div>
+
+        <div className={styles.featuredGrid}>
+          {featuredProjects.map((project) => (
+            <div 
+              key={project.title} 
+              className={`${styles.featuredCard} anim-project-layout`}
+              style={{ '--project-accent': project.accent, '--project-glow': project.glow }}
+            >
+              <div className={styles.featuredImageWrapper}>
+                <img src={project.image} alt={project.title} className={styles.featuredImage} />
+                <span className={styles.featuredBadge} style={{ color: project.accent }}>{project.category}</span>
+              </div>
+              <div className={styles.featuredContent}>
+                <h3 className={styles.featuredTitle}>{project.title}</h3>
+                <p className={styles.featuredTagline} style={{ color: project.accent }}>{project.tagline}</p>
+                <p className={styles.featuredDesc}>{project.description}</p>
+                
+                <div className={styles.featuredTechList}>
+                  {project.tech.frontend?.slice(0, 2).map(t => (
+                    <span key={t} className={styles.miniBadge}>{t}</span>
+                  ))}
+                  {project.tech.backend?.slice(0, 1).map(t => (
+                    <span key={t} className={styles.miniBadge}>{t}</span>
+                  ))}
+                </div>
+
+                <div className={styles.featuredCTAs}>
+                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className={styles.btnPrimaryMini}>
+                    <span>Live Preview</span>
+                  </a>
+                  <a href={project.gitLink} target="_blank" rel="noopener noreferrer" className={styles.btnSecondaryMini}>
+                    <span>Source</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.ctaFooter}>
+          <a href="/projects" className={styles.btnSecondary}>
+            <span>See More Projects</span>
+          </a>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="projects" className="section-padding" ref={container}>

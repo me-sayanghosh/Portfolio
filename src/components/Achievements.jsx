@@ -77,7 +77,7 @@ const AchievementCard = ({ item, index }) => {
   );
 };
 
-const Achievements = () => {
+const Achievements = ({ featured }) => {
   const container = useRef(null);
 
   const achievements = [
@@ -122,6 +122,8 @@ const Achievements = () => {
       glow: 'rgba(0, 242, 254, 0.18)'
     }
   ];
+
+  const displayAchievements = featured ? achievements.slice(0, 2) : achievements;
 
   // GSAP scroll trigger for achievements stagger entries
   useEffect(() => {
@@ -170,10 +172,18 @@ const Achievements = () => {
       </div>
       
       <div className={styles.grid}>
-        {achievements.map((item, index) => (
+        {displayAchievements.map((item, index) => (
           <AchievementCard key={index} item={item} index={index} />
         ))}
       </div>
+
+      {featured && (
+        <div className={styles.ctaFooter}>
+          <a href="/achievements" className={styles.btnSecondary}>
+            <span>See All Achievements</span>
+          </a>
+        </div>
+      )}
     </section>
   );
 };

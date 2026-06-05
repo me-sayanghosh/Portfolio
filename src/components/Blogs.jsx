@@ -6,7 +6,7 @@ import styles from './Blogs.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Blogs = () => {
+const Blogs = ({ featured }) => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -271,9 +271,11 @@ A high-performance backend requires modern routing speeds, cryptographic securit
     }
   ];
 
-  const filteredBlogs = activeCategory === 'All'
-    ? blogPosts
-    : blogPosts.filter(post => post.category === activeCategory);
+  const filteredBlogs = featured
+    ? blogPosts.slice(0, 2)
+    : (activeCategory === 'All'
+      ? blogPosts
+      : blogPosts.filter(post => post.category === activeCategory));
 
   // Scroll handler for modal progress indicator
   const handleModalScroll = () => {
@@ -391,20 +393,22 @@ A high-performance backend requires modern routing speeds, cryptographic securit
     <section id="blogs" className="section-padding" ref={container}>
       <div className={styles.sectionHeader}>
         <span className={`${styles.pretitle} anim-blog-header`}>KNOWLEDGE SHARING</span>
-        <h2 className={`${styles.heading} anim-blog-header`}>Articles & Insights</h2>
+        <h2 className={`${styles.heading} anim-blog-header`}>{featured ? 'Featured Articles' : 'Articles & Insights'}</h2>
 
         {/* Categories Bar */}
-        <div className={`${styles.filterBar} anim-blog-header`}>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`${styles.filterBtn} ${activeCategory === cat ? styles.filterBtnActive : ''}`}
-              onClick={() => setActiveCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        {!featured && (
+          <div className={`${styles.filterBar} anim-blog-header`}>
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={`${styles.filterBtn} ${activeCategory === cat ? styles.filterBtnActive : ''}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Blogs Grid - Flat 2D elements */}
@@ -442,6 +446,14 @@ A high-performance backend requires modern routing speeds, cryptographic securit
           </article>
         ))}
       </div>
+
+      {featured && (
+        <div className={styles.ctaFooter}>
+          <a href="/blogs" className={styles.btnSecondary}>
+            <span>See More Articles</span>
+          </a>
+        </div>
+      )}
 
       {/* Immersive Slide-in Article Modal */}
       {selectedBlog && (
