@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Briefcase, Trophy, MessageSquare, Sun, Moon } from 'lucide-react';
+import { Home, User, Briefcase, Trophy, MessageSquare, Sun, Moon, BookOpen } from 'lucide-react';
 import styles from './Navbar.module.css';
 
 const Navbar = ({ theme, toggleTheme }) => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const sections = ['home', 'about', 'projects', 'achievements', 'contact'];
+    const sections = ['home', 'about', 'projects', 'achievements', 'blogs', 'contact'];
     
     const handleScroll = () => {
       if (window.scrollY < 100) {
@@ -82,6 +82,14 @@ const Navbar = ({ theme, toggleTheme }) => {
             data-tooltip="Achievements"
           >
             <Trophy size={18} className={activeSection === 'achievements' ? 'anim-wiggle' : ''} />
+            <span className={styles.activeDot} />
+          </a>
+          <a 
+            href="#blogs" 
+            className={`${styles.navLink} ${activeSection === 'blogs' ? styles.navLinkActive : ''}`}
+            data-tooltip="Blogs"
+          >
+            <BookOpen size={18} className={activeSection === 'blogs' ? 'anim-pulse' : ''} />
             <span className={styles.activeDot} />
           </a>
           <a 

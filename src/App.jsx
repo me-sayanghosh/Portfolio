@@ -8,6 +8,7 @@ import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CanvasGrid from './components/CanvasGrid';
+import Blogs from './components/Blogs';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -105,6 +106,7 @@ function App() {
         <Projects />
         <Services />
         <Achievements />
+        <Blogs />
         <Contact />
       </main>
       <Footer />
