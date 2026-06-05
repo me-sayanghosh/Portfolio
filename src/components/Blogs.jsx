@@ -268,11 +268,182 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 A high-performance backend requires modern routing speeds, cryptographic security, and clean packaging. FastAPI combined with Docker provides a state-of-the-art framework for freshers and experienced backend engineers alike, ensuring that your core server logic remains robust, clean, and scaling-ready.
       `
+    },
+    {
+      id: 4,
+      title: 'Advanced SVG Filter Effects: Creating Organic Liquid Distortion',
+      category: 'UI/UX & Creative',
+      date: 'June 4, 2026',
+      readTime: '5 min read',
+      snippet: 'How SVG feTurbulence, feDisplacementMap, and custom keyframe interpolations allow developers to construct organic, liquid-like UI distortions.',
+      accent: '#10b981',
+      glow: 'rgba(16, 185, 129, 0.15)',
+      content: `
+# Advanced SVG Filter Effects: Creating Organic Liquid Distortion
+
+In modern web design, standard geometric hover effects and linear translations can sometimes feel cold. To create a design that feels premium and organic, creative developers turn to **SVG filters**.
+
+Using filter elements like \`<feTurbulence>\` and \`<feDisplacementMap>\`, we can warp flat pixel layouts into fluid, liquid-like shapes. Let's look at how to build a dynamic distortion container.
+
+---
+
+## 1. The Math of Displacements
+
+Displacement mapping works by offseting the original position of a pixel $(x, y)$ by an amount determined by the color values of a second image—the displacement map.
+
+$$x_{\text{new}} = x + (R(x, y) - 0.5) \times \text{scale}$$
+$$y_{\text{new}} = y + (G(x, y) - 0.5) \times \text{scale}$$
+
+By using a generated Perlin noise map as the input, we can introduce organic, natural distortions instead of sterile pixelated shifts.
+
+---
+
+## 2. Defining the SVG Filter
+
+First, we define the filter inside a hidden SVG element on the page.
+
+\`\`\`xml
+<svg style="position: absolute; width: 0; height: 0;">
+  <defs>
+    <filter id="liquid-distortion">
+      <feTurbulence 
+        type="fractalNoise" 
+        baseFrequency="0.04" 
+        numOctaves="2" 
+        result="noise" 
+      />
+      <feDisplacementMap 
+        in="SourceGraphic" 
+        in2="noise" 
+        scale="20" 
+        xChannelSelector="R" 
+        yChannelSelector="G" 
+      />
+    </filter>
+  </defs>
+</svg>
+\`\`\`
+
+In your CSS, apply the filter:
+
+\`\`\`css
+.liquidCard {
+  transition: filter 0.3s ease;
+}
+.liquidCard:hover {
+  filter: url(#liquid-distortion);
+}
+\`\`\`
+
+---
+
+## Summary
+
+Combining SVG mathematical filters with modern CSS transforms creates rich, interactive designs. This allows you to construct premium layouts that react organically to user interaction.
+      `
+    },
+    {
+      id: 5,
+      title: 'Deep Dive into CSS Containment: Boosting Render Performance',
+      category: 'Web Performance',
+      date: 'June 5, 2026',
+      readTime: '4 min read',
+      snippet: 'An exploration of CSS containment properties (contain: layout paint style size) and how they isolate DOM subtrees to minimize browser reflows.',
+      accent: '#eab308',
+      glow: 'rgba(234, 179, 8, 0.15)',
+      content: `
+# Deep Dive into CSS Containment: Boosting Render Performance
+
+When rendering complex dashboards or large feeds of dynamic cards, browsers often spend substantial CPU time recalculating layouts. Every time a small element changes size, the browser performs a **reflow** of the entire document.
+
+CSS Containment allows you to tell the browser: *"This component is completely self-contained. Changes inside do not affect the outside layout."*
+
+---
+
+## 1. The \`contain\` Property Values
+
+The \`contain\` property accepts four main keywords that isolate different rendering behaviors:
+
+* **layout:** Tells the browser that nothing outside this box affects its internal layout, and vice versa.
+* **paint:** Ensures that children of the element are never painted outside its bounds.
+* **size:** Informs the browser that the element's size is independent of its children's sizes.
+* **content:** A shorthand for \`layout paint\`.
+
+---
+
+## 2. How it prevents Reflow Cascades
+
+Without containment, modifying the text inside a deeply nested card triggers a cascade:
+
+$$\text{DOM Change} \rightarrow \text{Recalculate Style} \rightarrow \text{Update Layout (Entire Page)} \rightarrow \text{Paint}$$
+
+With \`contain: content;\` applied:
+
+$$\text{DOM Change} \rightarrow \text{Recalculate Style} \rightarrow \text{Update Layout (Card Subtree Only)} \rightarrow \text{Paint}$$
+
+This cuts rendering bottleneck calculations down to a fraction of their standard execution cost, maintaining 60fps even during heavy DOM updates.
+
+---
+
+## Summary
+
+By understanding containment and isolating complex layout subtrees, we can keep the portfolio's micro-animations and interactive grids highly performant, ensuring fluid scrolling across all devices.
+      `
+    },
+    {
+      id: 6,
+      title: 'Architecting Real-Time Systems: WebSockets vs. SSE',
+      category: 'Backend & Core',
+      date: 'June 5, 2026',
+      readTime: '6 min read',
+      snippet: 'A comparative study on choosing between WebSockets and Server-Sent Events (SSE) for building low-latency, real-time message streams.',
+      accent: '#f43f5e',
+      glow: 'rgba(244, 63, 94, 0.15)',
+      content: `
+# Architecting Real-Time Systems: WebSockets vs. SSE
+
+In modern web development, static HTTP requests are no longer sufficient for real-time dashboards, guestbooks, or collaborative modules. Choosing the right real-time protocol is crucial for both performance and backend complexity.
+
+Let's compare **WebSockets** and **Server-Sent Events (SSE)** to determine the optimal solution for your next service.
+
+---
+
+## 1. WebSockets: Full-Duplex Power
+
+WebSockets provide a persistent, bi-directional communication channel over a single TCP connection.
+
+* **Pros:** Low-overhead bi-directional transport, excellent for gaming, chats, and collaborative tools.
+* **Cons:** Bypasses HTTP, requires dedicated routing setup, and does not automatically support automatic reconnection.
+
+---
+
+## 2. Server-Sent Events (SSE): Lightweight Streaming
+
+SSE is a server-to-client unidirectional push protocol built directly on standard HTTP.
+
+* **Pros:** Standard HTTP connection, native automatic reconnection support, and simple integration with API Gateways.
+* **Cons:** Client cannot send messages over the stream; it must send separate HTTP POST requests.
+
+---
+
+## 3. Decision Matrix
+
+Use the following guidelines to select your real-time architecture:
+
+* **Choose WebSockets when:** Both client and server need to send high-frequency messages (e.g., collaborative canvas, multiplayer game).
+* **Choose SSE when:** The client only needs to receive live updates from the server (e.g., notification feeds, live logs, or dynamic guestbooks).
+
+---
+
+## Summary
+
+Selecting the appropriate protocol simplifies backend logic. For visitor logs and guestbooks, SSE offers a robust, HTTP-native streaming model, while WebSockets excel in active multi-user interaction layers.
+      `
     }
   ];
 
   const filteredBlogs = featured
-    ? blogPosts.slice(0, 2)
+    ? blogPosts.slice(0, 3)
     : (activeCategory === 'All'
       ? blogPosts
       : blogPosts.filter(post => post.category === activeCategory));
