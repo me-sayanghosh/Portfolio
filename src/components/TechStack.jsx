@@ -1,12 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Terminal, Laptop, Database } from 'lucide-react';
+import { Terminal, Laptop, Database, Cloud } from 'lucide-react';
 import {
   SiReact,
   SiNextdotjs,
   SiJavascript,
-  SiCssmodules,
+  SiTypescript,
+  SiTailwindcss,
   SiWordpress,
   SiNodedotjs,
   SiExpress,
@@ -14,9 +15,18 @@ import {
   SiPython,
   SiMongodb,
   SiMysql,
+  SiPostgresql,
+  SiRedis,
+  SiFirebase,
   SiGit,
+  SiGithub,
+  SiDocker,
+  SiVercel,
+  SiPostman,
+  SiLinux,
   SiFigma
 } from 'react-icons/si';
+import { FaAws } from 'react-icons/fa';
 import styles from './TechStack.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,16 +52,22 @@ const TechStack = () => {
           IconComponent: SiNextdotjs
         },
         {
+          name: 'TypeScript',
+          color: '#3178C6',
+          glow: 'rgba(49, 120, 198, 0.15)',
+          IconComponent: SiTypescript
+        },
+        {
           name: 'JavaScript',
           color: '#F7DF1E',
           glow: 'rgba(247, 223, 30, 0.15)',
           IconComponent: SiJavascript
         },
         {
-          name: 'CSS Modules',
-          color: '#264de4',
-          glow: 'rgba(38, 77, 228, 0.15)',
-          IconComponent: SiCssmodules
+          name: 'Tailwind CSS',
+          color: '#06B6D4',
+          glow: 'rgba(6, 182, 212, 0.15)',
+          IconComponent: SiTailwindcss
         },
         {
           name: 'WordPress',
@@ -92,7 +108,7 @@ const TechStack = () => {
       ]
     },
     {
-      category: 'Databases & Tools',
+      category: 'Databases & Storage',
       icon: <Database size={18} />,
       items: [
         {
@@ -102,16 +118,76 @@ const TechStack = () => {
           IconComponent: SiMongodb
         },
         {
+          name: 'PostgreSQL',
+          color: '#4169E1',
+          glow: 'rgba(65, 105, 225, 0.15)',
+          IconComponent: SiPostgresql
+        },
+        {
           name: 'MySQL',
           color: '#4479A1',
           glow: 'rgba(68, 121, 161, 0.15)',
           IconComponent: SiMysql
         },
         {
+          name: 'Redis',
+          color: '#DC382D',
+          glow: 'rgba(220, 56, 45, 0.15)',
+          IconComponent: SiRedis
+        },
+        {
+          name: 'Firebase',
+          color: '#FFCA28',
+          glow: 'rgba(255, 202, 40, 0.15)',
+          IconComponent: SiFirebase
+        }
+      ]
+    },
+    {
+      category: 'DevOps & Tools',
+      icon: <Cloud size={18} />,
+      items: [
+        {
+          name: 'AWS',
+          color: '#FF9900',
+          glow: 'rgba(255, 153, 0, 0.15)',
+          IconComponent: FaAws
+        },
+        {
+          name: 'Docker',
+          color: '#2496ED',
+          glow: 'rgba(36, 150, 237, 0.15)',
+          IconComponent: SiDocker
+        },
+        {
           name: 'Git',
           color: '#F05032',
           glow: 'rgba(240, 80, 50, 0.15)',
           IconComponent: SiGit
+        },
+        {
+          name: 'GitHub',
+          color: '#ffffff',
+          glow: 'rgba(255, 255, 255, 0.12)',
+          IconComponent: SiGithub
+        },
+        {
+          name: 'Vercel',
+          color: '#ffffff',
+          glow: 'rgba(255, 255, 255, 0.12)',
+          IconComponent: SiVercel
+        },
+        {
+          name: 'Linux',
+          color: '#FCC624',
+          glow: 'rgba(252, 198, 36, 0.15)',
+          IconComponent: SiLinux
+        },
+        {
+          name: 'Postman',
+          color: '#FF6C37',
+          glow: 'rgba(255, 108, 55, 0.15)',
+          IconComponent: SiPostman
         },
         {
           name: 'Figma',

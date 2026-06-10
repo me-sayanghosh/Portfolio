@@ -30,7 +30,7 @@
 /* Futuristic Categories Grid */
 .stackGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
@@ -207,6 +207,10 @@
     font-size: 2rem;
   }
   
+  .stackGrid {
+    grid-template-columns: 1fr;
+  }
+
   .categoryCard {
     padding: 1.75rem;
   }
