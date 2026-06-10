@@ -488,39 +488,43 @@ Selecting the appropriate protocol simplifies backend logic. For visitor logs an
   // Section entry animation
   useEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.fromTo('.anim-blog-header', {
-        y: 40,
-        opacity: 0
-      }, {
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 80%',
-        },
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power4.out',
-        stagger: 0.1
-      });
+      if (container.current.querySelector('.anim-blog-header')) {
+        gsap.fromTo('.anim-blog-header', {
+          y: 40,
+          opacity: 0
+        }, {
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out',
+          stagger: 0.1
+        });
+      }
 
-      gsap.fromTo('.anim-blog-card', {
-        y: 50,
-        opacity: 0
-      }, {
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 75%',
-        },
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power4.out',
-        stagger: 0.1
-      });
+      if (container.current.querySelector('.anim-blog-card')) {
+        gsap.fromTo('.anim-blog-card', {
+          y: 50,
+          opacity: 0
+        }, {
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 75%',
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out',
+          stagger: 0.1
+        });
+      }
     }, container);
 
     return () => ctx.revert();
-  }, []);
+  }, [blogPosts]);
 
   // Helper to parse inline markdown (bold ** and code `) into JSX components
   const parseInlineMarkdown = (text) => {

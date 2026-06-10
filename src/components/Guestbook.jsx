@@ -115,52 +115,58 @@ const Guestbook = ({ featured }) => {
   // Entry GSAP ScrollTrigger animations
   useEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.fromTo('.anim-gb-header', {
-        y: 40,
-        opacity: 0
-      }, {
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 80%',
-        },
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power4.out',
-        stagger: 0.1
-      });
+      if (container.current.querySelector('.anim-gb-header')) {
+        gsap.fromTo('.anim-gb-header', {
+          y: 40,
+          opacity: 0
+        }, {
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out',
+          stagger: 0.1
+        });
+      }
 
-      gsap.fromTo('.anim-gb-form', {
-        x: -40,
-        opacity: 0
-      }, {
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 75%',
-        },
-        x: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power4.out'
-      });
+      if (container.current.querySelector('.anim-gb-form')) {
+        gsap.fromTo('.anim-gb-form', {
+          x: -40,
+          opacity: 0
+        }, {
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 75%',
+          },
+          x: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out'
+        });
+      }
 
-      gsap.fromTo('.anim-gb-list', {
-        x: 40,
-        opacity: 0
-      }, {
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 75%',
-        },
-        x: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power4.out'
-      });
+      if (container.current.querySelector('.anim-gb-list')) {
+        gsap.fromTo('.anim-gb-list', {
+          x: 40,
+          opacity: 0
+        }, {
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 75%',
+          },
+          x: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out'
+        });
+      }
     }, container);
 
     return () => ctx.revert();
-  }, []);
+  }, [signatures]);
 
   const displaySignatures = featured ? signatures.slice(0, 3) : signatures;
 

@@ -99,38 +99,42 @@ const Projects = ({ featured }) => {
   // Section intro GSAP animations
   useEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.fromTo('.anim-project-header', {
-        y: 40,
-        opacity: 0
-      }, {
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 80%',
-        },
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power4.out'
-      });
+      if (container.current.querySelector('.anim-project-header')) {
+        gsap.fromTo('.anim-project-header', {
+          y: 40,
+          opacity: 0
+        }, {
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 80%',
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out'
+        });
+      }
 
-      gsap.fromTo('.anim-project-layout', {
-        y: 50,
-        opacity: 0
-      }, {
-        scrollTrigger: {
-          trigger: container.current,
-          start: 'top 75%',
-        },
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power4.out',
-        stagger: 0.1
-      });
+      if (container.current.querySelector('.anim-project-layout')) {
+        gsap.fromTo('.anim-project-layout', {
+          y: 50,
+          opacity: 0
+        }, {
+          scrollTrigger: {
+            trigger: container.current,
+            start: 'top 75%',
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out',
+          stagger: 0.1
+        });
+      }
     }, container);
 
     return () => ctx.revert();
-  }, []);
+  }, [projects]);
 
   return (
     <section id="projects" className="section-padding" ref={container}>
