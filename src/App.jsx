@@ -10,6 +10,7 @@ import ProjectsPage from './pages/ProjectsPage';
 import BlogsPage from './pages/BlogsPage';
 import GuestbookPage from './pages/GuestbookPage';
 import AchievementsPage from './pages/AchievementsPage';
+import AdminPage from './pages/AdminPage';
 
 import Lenis from 'lenis';
 import gsap from 'gsap';
@@ -135,6 +136,7 @@ function App() {
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/guestbook" element={<GuestbookPage />} />
           <Route path="/achievements" element={<AchievementsPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </main>
     </div>

@@ -12,10 +12,25 @@ const Blogs = ({ featured }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const container = useRef(null);
   const modalContentRef = useRef(null);
+  const [blogPosts, setBlogPosts] = useState([]);
 
   const categories = ['All', 'UI/UX & Creative', 'Web Performance', 'Backend & Core'];
 
-  const blogPosts = [
+  useEffect(() => {
+    const stored = localStorage.getItem('sayan_portfolio_blogs');
+    if (stored) {
+      try {
+        setBlogPosts(JSON.parse(stored));
+      } catch (err) {
+        setBlogPosts(defaultBlogPosts);
+      }
+    } else {
+      setBlogPosts(defaultBlogPosts);
+      localStorage.setItem('sayan_portfolio_blogs', JSON.stringify(defaultBlogPosts));
+    }
+  }, []);
+
+  const defaultBlogPosts = [
     {
       id: 1,
       title: 'The Art of Micro-Animations: Crafting Cinematic Web UIs',

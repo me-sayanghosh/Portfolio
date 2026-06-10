@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './Projects.module.css';
@@ -11,8 +11,23 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Projects = ({ featured }) => {
   const container = useRef(null);
+  const [projects, setProjects] = useState([]);
 
-  const projects = [
+  useEffect(() => {
+    const stored = localStorage.getItem('sayan_portfolio_projects');
+    if (stored) {
+      try {
+        setProjects(JSON.parse(stored));
+      } catch (err) {
+        setProjects(defaultProjects);
+      }
+    } else {
+      setProjects(defaultProjects);
+      localStorage.setItem('sayan_portfolio_projects', JSON.stringify(defaultProjects));
+    }
+  }, []);
+
+  const defaultProjects = [
     {
       title: 'HoopIt',
       category: 'Full-Stack',
